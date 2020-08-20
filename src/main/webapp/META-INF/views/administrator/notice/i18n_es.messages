@@ -1,0 +1,27 @@
+# i18n_es.messages
+#
+# Copyright (c) 2019 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.notice.list.label.creation-date = Fecha de creación
+administrator.notice.list.label.title = Título
+
+administrator.notice.form.label.header-picture = Imagen
+administrator.notice.form.label.title = Título
+administrator.notice.form.label.creation-date = Fecha de creación
+administrator.notice.form.label.deadline = Fecha de vencimiento
+administrator.notice.form.label.body = Cuerpo
+administrator.notice.form.label.first-optional-link = Primer enlace opcional
+administrator.notice.form.label.second-optional-link = Segundo enlace opcional
+administrator.notice.form.label.accept = Aceptar
+
+administrator.notice.form.button.create = Crear
+administrator.notice.form.button.return = Volver
+
+administrator.notice.error.must-accept = Debe aceptar
+administrator.notice.error.deadline = La fecha de vencimiento debe ser posterior a la fecha actual

@@ -1,0 +1,13 @@
+
+entrepreneur.accounting-record.list.label.creation-moment = Fecha de creación
+entrepreneur.accounting-record.list.label.title = Título
+entrepreneur.accounting-record.list.label.status = Estado
+
+entrepreneur.accounting-record.form.label.title = Título
+entrepreneur.accounting-record.form.label.status = Estado
+entrepreneur.accounting-record.form.label.creationMoment = Fecha de creación
+entrepreneur.accounting-record.form.label.body = Contenido
+entrepreneur.accounting-record.form.label.entrepreneur = Contable
+entrepreneur.accounting-record.form.label.investmentRound = Ticker de la ronda de inversión
+
+entrepreneur.accounting-record.form.button.return = Volver

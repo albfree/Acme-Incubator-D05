@@ -1,0 +1,12 @@
+anonymous.escobar-bulletin.list.label.moment = Moment
+anonymous.escobar-bulletin.list.label.author = Author
+anonymous.escobar-bulletin.list.label.country = Country
+anonymous.escobar-bulletin.list.label.link = Link (URL)
+anonymous.escobar-bulletin.list.label.text = Text
+
+anonymous.escobar-bulletin.form.label.text = Text:
+anonymous.escobar-bulletin.form.label.author = Author:
+anonymous.escobar-bulletin.form.label.country = Country:
+anonymous.escobar-bulletin.form.label.link = Link (URL):
+anonymous.escobar-bulletin.form.button.create = Publish
+anonymous.escobar-bulletin.form.button.return = Return

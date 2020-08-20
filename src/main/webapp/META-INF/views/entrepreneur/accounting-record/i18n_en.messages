@@ -1,0 +1,13 @@
+
+entrepreneur.accounting-record.list.label.creation-moment = Creation moment
+entrepreneur.accounting-record.list.label.title = Title
+entrepreneur.accounting-record.list.label.status = Status
+
+entrepreneur.accounting-record.form.label.title = Title
+entrepreneur.accounting-record.form.label.status = Status
+entrepreneur.accounting-record.form.label.creationMoment = Creation moment
+entrepreneur.accounting-record.form.label.body = Body
+entrepreneur.accounting-record.form.label.entrepreneur = Bookkeeper
+entrepreneur.accounting-record.form.label.investmentRound = Investment Round ticker
+
+entrepreneur.accounting-record.form.button.return = Return

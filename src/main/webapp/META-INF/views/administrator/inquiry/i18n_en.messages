@@ -1,0 +1,33 @@
+# i18n_en.messages
+#
+# Copyright (c) 2019 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.inquiry.form.label.title = Title
+administrator.inquiry.form.label.creation = Creation date
+administrator.inquiry.form.label.deadline = Deadline
+administrator.inquiry.form.label.description = Description
+administrator.inquiry.form.label.minMoney = Minimum money
+administrator.inquiry.form.label.maxMoney = Maximum money
+administrator.inquiry.form.label.email = Email
+
+administrator.inquiry.form.button.return = Return
+
+
+administrator.inquiry.form.button.update = Update
+administrator.inquiry.form.button.create = Create
+administrator.inquiry.form.button.delete = Delete
+
+administrator.inquiry.error.deadline = The expiration date must be after the current date
+administrator.inquiry.error.maxMoneyLowerThanMin = The minimum money must be less than the maximum money
+
+
+
+
+
+

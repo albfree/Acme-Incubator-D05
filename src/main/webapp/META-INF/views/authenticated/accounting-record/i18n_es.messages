@@ -1,0 +1,14 @@
+# Brapercob
+
+authenticated.accounting-record.list.label.creation-moment = Fecha de creación
+authenticated.accounting-record.list.label.title = Título
+authenticated.accounting-record.list.label.status = Estado
+
+authenticated.accounting-record.form.label.title = Título
+authenticated.accounting-record.form.label.status = Estado
+authenticated.accounting-record.form.label.creationMoment = Fecha de creación
+authenticated.accounting-record.form.label.body = Contenido
+authenticated.accounting-record.form.label.bookkeeper = Contable
+authenticated.accounting-record.form.label.investmentRound = Ticker de la ronda de inversión
+
+authenticated.accounting-record.form.button.return = Volver

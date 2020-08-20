@@ -1,0 +1,162 @@
+# i18n_en.messages
+#
+# Copyright (c) 2019 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# master.banner.welcome #######################################################
+
+master.banner.background = #FFE97F 
+
+# master.welcome ##############################################################
+
+master.welcome.title = Welcome!
+master.welcome.text = \
+	Welcome to Starter Project! Never before has it bee easier to get your \
+	project up and running!
+
+# master.menu #################################################################
+
+master.menu.home = Home
+master.menu.sign-up = Sign up
+master.menu.sign-in = Sign in
+master.menu.sign-out = Sign out
+master.menu.bulletins.list = Lists of Bulletins
+master.menu.bulletins.create = Creates of Bulletins
+
+# master.menu.anonymous #######################################################
+
+master.menu.anonymous = Anonymous
+master.menu.anonymous.notice.list = Notice's list
+master.menu.technology-record.list = Technology records
+master.menu.tool-record.list = Tool records
+master.menu.anonymous.albgueram = Alberto's favourite link
+master.menu.anonymous.josescrue-favourite-link = josescrue's favourite link
+master.menu.anonymous.favourite-link.diego = Diego's favourite link
+master.menu.anonymous.favourite-link.brayan = Brayan's favourite link
+master.menu.anonymous.joslobtro-favourite-link = joslobtro's favourite link
+
+# master.menu.anonymous.bulletin #######################################################
+
+master.menu.bulletins.list = Bulletins' list
+master.menu.bulletins.create = Create a bulletin
+
+master.menu.anonymous.guerrero-bulletin.list = Guerrero's bulletins list
+master.menu.anonymous.guerreroBulletin.create =  New Guerrero's bulletin
+
+master.menu.anonymous.escobar-bulletin.list = EscobarBulletins' list
+master.menu.anonymous.escobar-bulletin.create = New EscobarBulletin
+
+master.menu.bulletins.horrillo-bulletin.list = HorrilloBulletins' list
+master.menu.bulletins.horrillo-bulletin.create = New HorrilloBulletin
+
+master.menu.anonymous.perezBulletin.list = Perez's bulletins list
+master.menu.anonymous.perezBulletin.create = New Perez's bulletin
+
+master.menu.anonymous.lobatoBulletin.list = LobatoBulletins' list
+master.menu.anonymous.lobatoBulletin.create = New LobatoBulletin
+
+# master.menu.administrator ###################################################
+
+master.menu.administrator = Administrator
+master.menu.administrator.create = Create
+master.menu.administrator.list = List
+master.menu.administrator.overture.list = List of overtures
+master.menu.administrator.overture.create = Create a overture
+master.menu.administrator.notice.list = Notice's list
+master.menu.administrator.notice.create = Create a notice
+master.menu.administrator.inquiry.list = Inquiry's list
+master.menu.administrator.inquiry.create = Create inquiry
+master.menu.administrator.user-accounts = User accounts
+master.menu.administrator.customization = Customization Parameters
+master.menu.administrator.challenge.list = Challenges
+master.menu.administrator.challenge.create = New Challenge
+master.menu.administrator.shutdown = Shut down
+master.menu.administrator.tool-record.create = Create Tool Record
+master.menu.administrator.technology-record.create = Create Technology Record
+
+# master.menu.authenticated ###################################################
+
+master.menu.authenticated = Authenticated
+master.menu.authenticated.investment-round.list = Investment rounds' list
+master.menu.authenticated.notice.list = Notice's list
+master.menu.authenticated.challenge = Challenges
+master.menu.authenticated.overture.list = List of overtures
+master.menu.authenticated.inquiry.list = List of inquiries
+master.menu.authenticated.forum.list = Forums in which I participate
+
+# master.menu.investor ###################################################
+
+master.menu.investor = Investor
+master.menu.investor.application.list-mine = My applications
+
+# master.menu.provider ########################################################
+
+master.menu.provider = Provider
+master.menu.provider.favourite-link = Favourite link
+
+# master.menu.consumer ##########################################################
+
+master.menu.consumer = Consumer
+master.menu.consumer.favourite-link = Favourite link
+
+# master.menu.entrepreneur ###################################################
+
+master.menu.entrepreneur = Entrepreneur
+master.menu.entrepreneur.investment-round.list-mine = My investment rounds' list
+master.menu.entrepreneur.application.list-mine = Applications to my investment rounds
+
+# master.menu.bookkeeper ###################################################
+
+master.menu.bookkeeper = Bookkeeper
+master.menu.bookkeeper.investment-round.list-mine = Investment rounds with my accounting records
+master.menu.bookkeeper.investment-round.list-not-mine = Investment rounds without my accounting records
+
+# master.menu.user-account ####################################################
+
+master.menu.user-account = Account
+master.menu.user-account.general-data = General data
+master.menu.user-account.provider = Provider data
+master.menu.user-account.become-provider = Become a provider
+master.menu.user-account.consumer = Consumer data
+master.menu.user-account.become-consumer = Become a consumer
+
+# master.footer ###############################################################
+
+master.footer.title.about = About us
+master.footer.label.company = Company
+master.footer.label.license = License
+master.footer.title.social = Social
+master.footer.label.linked-in = Linked-In
+master.footer.label.twitter = Twitter
+master.footer.title.languages = Languages
+master.footer.label.english = English
+master.footer.label.spanish = Spanish
+
+# master.company ##############################################################
+
+master.company.title = The Company
+master.company.text = \
+	Acme Incubator, Inc. is a fictitious fictitious company that provides a \
+	Acme Incubator for the students of the Design and Testing subject of the \
+	Software Engineering Curriculum of the University of Seville.
+master.company.name = Acme Incubator, Inc.
+master.company.address = Number Street, City, State, Country
+master.company.phone = +000 123 456
+master.company.email = contact@acme.com
+
+# master.license ##############################################################
+
+master.license.title = License
+master.license.text = \
+	You may use this system free of charge, as long as you carefully observe the \
+	existing applicable laws.  Please, note that we do not share any information \
+	about you with any other company.  We only use three cookies, namely: \
+	"JSESSIONID" to identify your work session, "remember" to let you authenticate \
+	automatically for a maximum of 31 days, and "language" to store your language \
+	preferences. Additionally, we store an item called "returnStack" in your browser's \
+	local storage to keep track of the document to which some buttons must return.

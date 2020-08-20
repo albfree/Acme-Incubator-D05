@@ -1,0 +1,17 @@
+# Brapercob
+
+bookkeeper.investment-round.list.label.ticker = Ticker
+bookkeeper.investment-round.list.label.title = Título
+bookkeeper.investment-round.list.label.amount = Cantidad
+
+bookkeeper.investment-round.form.label.ticker = Ticker
+bookkeeper.investment-round.form.label.creation-date = Fecha de creación
+bookkeeper.investment-round.form.label.kind-of-round = Tipo de ronda
+bookkeeper.investment-round.form.label.title = Título
+bookkeeper.investment-round.form.label.description = Descripción
+bookkeeper.investment-round.form.label.amount = Cantidad
+bookkeeper.investment-round.form.label.optional-link = Link opcional
+bookkeeper.investment-round.form.button.work-programme = Mostrar programa de trabajo
+bookkeeper.investment-round.form.button.accounting-records = Mostrar registros contables
+
+bookkeeper.investment-round.form.button.return = Volver

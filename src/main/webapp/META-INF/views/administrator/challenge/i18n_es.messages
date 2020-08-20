@@ -1,0 +1,21 @@
+administrator.challenge.form.label.title = Título: 
+administrator.challenge.form.label.deadline = Fecha Límite: 
+administrator.challenge.form.label.description = Descripción: 
+administrator.challenge.form.label.rookieGoal = Objetivo para Novatos: 
+administrator.challenge.form.label.rookieReward = Recompensa para Novatos:  
+administrator.challenge.form.label.averageGoal = Objetivo para Nivel Medio: 
+administrator.challenge.form.label.averageReward = Recompensa para Nivel Medio:  
+administrator.challenge.form.label.expertGoal = Objetivo para Expertos: 
+administrator.challenge.form.label.expertReward = Recompensa para Expertos:  
+administrator.challenge.form.button.create = Crear
+administrator.challenge.form.button.update = Actualizar
+administrator.challenge.form.button.delete = Eliminar
+administrator.challenge.form.button.return = Volver
+
+administrator.challenge.list.label.title = Título
+administrator.challenge.list.label.deadline = Fecha Límite
+
+administrator.challenge.error.reward-null = Esta recompensa no puede ser nula
+administrator.challenge.error.reward-not-euro = Esta moneda debe ser euro ("€" o "EUR")
+administrator.challenge.error.null-deadline = La fecha límite no puede ser nula
+administrator.challenge.error.future-dead = La fecha límite debe estar al menos un mes en el futuro

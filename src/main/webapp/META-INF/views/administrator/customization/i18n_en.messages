@@ -1,0 +1,11 @@
+administrator.customization.list.label.spam-words = Spam Words 
+administrator.customization.list.label.threshold = Threshold
+administrator.customization.list.label.activity-sectors = Activity Sectors
+
+administrator.customization.form.label.spam-words = Spam Words:
+administrator.customization.form.label.threshold = Threshold:
+administrator.customization.form.label.activity-sectors = Activity Sectors:
+
+
+administrator.customization.form.button.update = Update
+administrator.customization.form.button.return = Return

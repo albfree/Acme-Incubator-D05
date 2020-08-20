@@ -1,0 +1,10 @@
+# Brapercob
+
+anonymous.perez-bulletin.list.label.moment = Moment
+anonymous.perez-bulletin.list.label.author = Author
+anonymous.perez-bulletin.list.label.event = Event
+
+anonymous.perez-bulletin.form.label.author = Author
+anonymous.perez-bulletin.form.label.event = Event
+anonymous.perez-bulletin.form.label.return = Return
+anonymous.perez-bulletin.form.label.create = Create
