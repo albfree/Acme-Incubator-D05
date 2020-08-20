@@ -124,6 +124,8 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.become-entrepreneur = Become a entrepreneur
+master.menu.user-account.entrepreneur = Entrepreneur data
 
 # master.footer ###############################################################
 
