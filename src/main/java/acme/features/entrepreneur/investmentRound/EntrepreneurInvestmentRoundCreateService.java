@@ -72,10 +72,6 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 		assert entity != null;
 		assert errors != null;
 
-		if (!errors.hasErrors("amount")) {
-			errors.state(request, entity.getAmount().getAmount() > 0, "amount", "entrepreneur.investment-round.error.amount.min");
-		}
-
 		boolean tickerIsCorrect = true;
 
 		if (!errors.hasErrors("ticker")) {

@@ -77,15 +77,17 @@ public class InvestmentRound extends DomainEntity {
 
 	@Transient
 	public boolean sumActivitiesBudgets() {
-		Double sum = 0.;
 		Boolean result = false;
 
-		for (Activity act : this.workProgramme) {
-			sum += act.getBudget().getAmount();
-		}
+		if (this.workProgramme.size() != 0) {
+			Double sum = 0.;
+			for (Activity act : this.workProgramme) {
+				sum += act.getBudget().getAmount();
+			}
 
-		if (sum.equals(this.amount.getAmount())) {
-			result = true;
+			if (sum.equals(this.amount.getAmount())) {
+				result = true;
+			}
 		}
 
 		return result;

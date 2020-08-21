@@ -26,7 +26,6 @@ entrepreneur.investment-round.form.button.accounting-records = Show accounting r
 entrepreneur.investment-round.form.button.create = Create
 entrepreneur.investment-round.form.button.return = Return
 
-entrepreneur.investment-round.error.amount.min = The amount can't be 0
 entrepreneur.investment-round.error.ticker.sector = The first three characters must be the same (but in uppercase) to those of your entrepreneur sector: {0}. In case of being one or two characters, add one or two X
 entrepreneur.investment-round.error.ticker.year = In the second string you must enter the last two digits of the current year
 entrepreneur.investment-round.error.ticker.exists = Choose another ticker number, the one you have entered is already in use
