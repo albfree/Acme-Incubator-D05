@@ -27,5 +27,6 @@ entrepreneur.investment-round.form.button.create = Crear
 entrepreneur.investment-round.form.button.return = Volver
 
 entrepreneur.investment-round.error.amount.min = La cantidad no puede ser 0
-entrepreneur.investment-round.error.ticker.sector = Los tres primeros carácteres deben ser igual (pero en mayúsculas) a los de tu sector de emprendedor: {0}. En caso de ser uno o dos caracteres, añade una o dos X
+entrepreneur.investment-round.error.ticker.sector = Los tres primeros carácteres deben ser igual (pero en mayúsculas) a los de tu sector de emprendedor: {0}. En caso de ser uno o dos carácteres, añade una o dos X
 entrepreneur.investment-round.error.ticker.year = En la segunda cadena debe introducir los dos últimos dígitos del año actual
+entrepreneur.investment-round.error.ticker.exists = Elige otro número de ticker, el que has introducido ya está en uso

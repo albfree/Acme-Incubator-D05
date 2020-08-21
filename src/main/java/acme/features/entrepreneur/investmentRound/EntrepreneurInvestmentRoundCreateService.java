@@ -73,13 +73,12 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 		assert errors != null;
 
 		if (!errors.hasErrors("amount")) {
-			//errors.state(request, request.getModel().getDouble("amount") > 0, "amount", "entrepreneur.investment-round.error.amount.min");
 			errors.state(request, entity.getAmount().getAmount() > 0, "amount", "entrepreneur.investment-round.error.amount.min");
 		}
 
-		if (!errors.hasErrors("ticker")) {
-			//String[] ticker = request.getModel().getString("ticker").split("-");
+		boolean tickerIsCorrect = true;
 
+		if (!errors.hasErrors("ticker")) {
 			String[] ticker = entity.getTicker().split("-");
 			String entrepreneurSector;
 
@@ -91,6 +90,7 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 
 			if (entrepreneurSector.length() == 3 && !entrepreneurSector.equals(ticker[0]) || entrepreneurSector.length() == 2 && !ticker[0].equals(entrepreneurSector + "X")
 				|| entrepreneurSector.length() == 1 && !ticker[0].equals(entrepreneurSector + "XX")) {
+				tickerIsCorrect = false;
 				errors.state(request, false, "ticker", "entrepreneur.investment-round.error.ticker.sector", entity.getEntrepreneur().getSector());
 			}
 
@@ -98,8 +98,13 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 			String yearDigits = dateFormat.format(Calendar.getInstance().getTime());
 
 			if (!ticker[1].equals(yearDigits)) {
+				tickerIsCorrect = false;
 				errors.state(request, false, "ticker", "entrepreneur.investment-round.error.ticker.year");
 			}
+		}
+
+		if (tickerIsCorrect && this.repository.findOneInvestmentRoundByTicker(entity.getTicker()) != null) {
+			errors.state(request, false, "ticker", "entrepreneur.investment-round.error.ticker.exists");
 		}
 
 	}

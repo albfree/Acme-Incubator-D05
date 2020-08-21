@@ -16,8 +16,7 @@ master.banner.background = #FFE97F
 
 master.welcome.title = Welcome!
 master.welcome.text = \
-	Welcome to Starter Project! Never before has it bee easier to get your \
-	project up and running!
+	Welcome to Acme Incubator!
 
 # master.menu #################################################################
 
@@ -108,6 +107,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.entrepreneur = Entrepreneur
 master.menu.entrepreneur.investment-round.list-mine = My investment rounds' list
+master.menu.entrepreneur.investment-round.create = Create a investment round
 master.menu.entrepreneur.application.list-mine = Applications to my investment rounds
 
 # master.menu.bookkeeper ###################################################

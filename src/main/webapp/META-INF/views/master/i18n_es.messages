@@ -16,8 +16,7 @@ master.banner.background = #FFE97F
 
 master.welcome.title = ¡Bienvenidos!
 master.welcome.text = \
-	Bienvenidos a Acme Stater!  Nunca antes ha sido tan sencillo desarrollar un \
-	proyecto y hacerlo funcionar.
+	Bienvenidos a Acme Incubator!
 
 # master.menu #################################################################
 
@@ -108,6 +107,7 @@ master.menu.consumer.favourite-link = Enlace favorito
 
 master.menu.entrepreneur = Emprendedor
 master.menu.entrepreneur.investment-round.list-mine = Lista de mis rondas de inversión
+master.menu.entrepreneur.investment-round.create = Crear una ronda de inversión
 master.menu.entrepreneur.application.list-mine = Solicitudes a mis rondas de inversión
 
 # master.menu.bookkeeper ###################################################

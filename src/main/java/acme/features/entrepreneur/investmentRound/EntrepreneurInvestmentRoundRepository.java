@@ -22,4 +22,7 @@ public interface EntrepreneurInvestmentRoundRepository extends AbstractRepositor
 	@Query("select e from Entrepreneur e where e.userAccount.id = ?1")
 	Entrepreneur findOneEntrepreneurByAccountId(int id);
 
+	@Query("select iv from InvestmentRound iv where iv.ticker = ?1")
+	InvestmentRound findOneInvestmentRoundByTicker(String ticker);
+
 }
