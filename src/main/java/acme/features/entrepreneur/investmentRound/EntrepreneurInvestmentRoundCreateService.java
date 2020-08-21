@@ -3,12 +3,15 @@ package acme.features.entrepreneur.investmentRound;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.customizations.Customization;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Errors;
@@ -103,6 +106,57 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 			errors.state(request, false, "ticker", "entrepreneur.investment-round.error.ticker.exists");
 		}
 
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !this.isSpamText(entity.getTitle()), "title", "SPAM");
+		}
+
+		//		if (!errors.hasErrors("description")) {
+		//
+		//		}
+		//
+		//		if (!errors.hasErrors("optionalLink")) {
+		//
+		//		}
+
+	}
+
+	private boolean isSpamText(final String textToCheck) {
+		boolean result = false;
+		Double numSpWordsInText = 0.;
+		Integer numOfWords = textToCheck.split(" ").length;
+		List<Customization> customization = this.repository.findCustomizations();
+
+		String spamWords = customization.get(0).getSpamWords();
+
+		String[] spamWordsArray = spamWords.split(";");
+
+		List<String> spamWordsList = Arrays.asList(spamWordsArray);
+
+		for (String sw : spamWordsList) {
+
+			numSpWordsInText = numSpWordsInText + this.timesAppearSpamWord(textToCheck.toLowerCase(), sw.toLowerCase(), 0.);
+
+			Double percentage = numSpWordsInText / numOfWords * 100;
+
+			if (percentage > customization.get(0).getThreshold()) {
+				result = true;
+				break;
+			}
+
+		}
+
+		return result;
+	}
+
+	private double timesAppearSpamWord(final String textToCheck, final String spamWord, Double numSpWord) {
+
+		if (textToCheck.contains(spamWord)) {
+			Integer index = textToCheck.indexOf(spamWord) + spamWord.length();
+			numSpWord += 1;
+			return this.timesAppearSpamWord(textToCheck.substring(index).trim(), spamWord, numSpWord);
+		}
+
+		return numSpWord;
 	}
 
 	@Override

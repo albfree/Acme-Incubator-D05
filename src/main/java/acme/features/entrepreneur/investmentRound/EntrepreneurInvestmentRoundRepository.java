@@ -2,10 +2,12 @@
 package acme.features.entrepreneur.investmentRound;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.customizations.Customization;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.repositories.AbstractRepository;
@@ -24,5 +26,8 @@ public interface EntrepreneurInvestmentRoundRepository extends AbstractRepositor
 
 	@Query("select iv from InvestmentRound iv where iv.ticker = ?1")
 	InvestmentRound findOneInvestmentRoundByTicker(String ticker);
+
+	@Query("select c from Customization c")
+	List<Customization> findCustomizations();
 
 }
