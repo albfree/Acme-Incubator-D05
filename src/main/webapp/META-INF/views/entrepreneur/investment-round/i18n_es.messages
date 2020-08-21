@@ -19,7 +19,13 @@ entrepreneur.investment-round.form.label.title = Título
 entrepreneur.investment-round.form.label.description = Descripción
 entrepreneur.investment-round.form.label.amount = Cantidad
 entrepreneur.investment-round.form.label.optional-link = Enlace opcional
+
 entrepreneur.investment-round.form.button.work-programme = Ver programa de trabajo
 entrepreneur.investment-round.form.button.accounting-records = Ver registros contables
 
+entrepreneur.investment-round.form.button.create = Crear
 entrepreneur.investment-round.form.button.return = Volver
+
+entrepreneur.investment-round.error.amount.min = La cantidad no puede ser 0
+entrepreneur.investment-round.error.ticker.sector = Los tres primeros carácteres deben ser igual (pero en mayúsculas) a los de tu sector de emprendedor: {0}. En caso de ser uno o dos caracteres, añade una o dos X
+entrepreneur.investment-round.error.ticker.year = En la segunda cadena debe introducir los dos últimos dígitos del año actual
