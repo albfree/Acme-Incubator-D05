@@ -661,3 +661,14 @@ ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
 ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:47): Failed to convert from type [java.lang.String] to type [java.lang.Double] for value '2.50f'; nested exception is java.lang.IllegalArgumentException: Parse attempt failed for value [2.50f]
 org.springframework.format.support.FormattingConversionService$ParserConverter.convert(FormattingConversionService.java:206): Parse attempt failed for value [2.50f]
 acme.framework.utilities.LocalisedDoubleFormatter.parse(LocalisedDoubleFormatter.java:59): Invalid value
+ERROR [org.apache.catalina.util.LifecycleBase] at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008): Protocol handler start failed
+at java.base/sun.nio.ch.Net.bind0(Native Method): Address already in use: bind
+ERROR [org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter] ***************************
+APPLICATION FAILED TO START
+***************************
+Description:
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+Action:
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+WARN [org.apache.catalina.util.SessionIdGeneratorBase] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [910] milliseconds.
+WARN [org.apache.catalina.util.SessionIdGeneratorBase] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [449] milliseconds.
