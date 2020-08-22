@@ -56,7 +56,7 @@ public class EntrepreneurInvestmentRoundShowService implements AbstractShowServi
 
 		Collection<Application> applications;
 		applications = this.repository.findApplicationsByInvestmentRoundId(ivID);
-		model.setAttribute("haveApplications", applications != null);
+		model.setAttribute("haveApplications", !applications.isEmpty());
 
 	}
 

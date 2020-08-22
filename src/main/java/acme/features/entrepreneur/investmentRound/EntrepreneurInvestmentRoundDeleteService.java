@@ -39,7 +39,7 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 		entrepreneur = investment.getEntrepreneur();
 		principal = request.getPrincipal();
 
-		result = entrepreneur.getUserAccount().getId() == principal.getAccountId() && applications == null;
+		result = entrepreneur.getUserAccount().getId() == principal.getAccountId() && applications.isEmpty();
 
 		return result;
 	}
@@ -65,7 +65,7 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 
 		Collection<Application> applications;
 		applications = this.repository.findApplicationsByInvestmentRoundId(ivID);
-		model.setAttribute("haveApplications", applications != null);
+		model.setAttribute("haveApplications", !applications.isEmpty());
 	}
 
 	@Override
