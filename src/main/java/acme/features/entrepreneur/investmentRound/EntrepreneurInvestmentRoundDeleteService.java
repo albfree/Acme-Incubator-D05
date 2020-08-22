@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.applications.Application;
+import acme.entities.forums.Forum;
 import acme.entities.investmentRounds.InvestmentRound;
+import acme.entities.messages.Message;
+import acme.entities.records.AccountingRecord;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -91,7 +94,30 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 	@Override
 	public void delete(final Request<InvestmentRound> request, final InvestmentRound entity) {
 
-		//TODO eliminar todas las entidades dependientes
+		if (entity.getWorkProgramme() != null && !entity.getWorkProgramme().isEmpty()) {
+			this.repository.deleteAll(entity.getWorkProgramme());
+		}
+
+		int investmentID = entity.getId();
+
+		Collection<AccountingRecord> accountings = this.repository.findAccountingRecordsByInvestmentRoundId(investmentID);
+
+		if (accountings != null && !accountings.isEmpty()) {
+			this.repository.deleteAll(accountings);
+		}
+
+		Forum forum = this.repository.findForumByInvestmentRoundId(investmentID);
+
+		if (forum != null) {
+			Collection<Message> messages = this.repository.findMessagesByForumId(forum.getId());
+
+			if (messages != null && !messages.isEmpty()) {
+				this.repository.deleteAll(messages);
+			}
+			this.repository.delete(forum);
+		}
+
+		this.repository.delete(entity);
 
 	}
 

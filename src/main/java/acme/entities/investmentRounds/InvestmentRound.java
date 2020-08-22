@@ -4,7 +4,6 @@ package acme.entities.investmentRounds;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -66,7 +65,7 @@ public class InvestmentRound extends DomainEntity {
 	@Size(max = 255)
 	private String						optionalLink;
 
-	@OneToMany(mappedBy = "investment", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "investment")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<@Valid Activity>	workProgramme;
 
