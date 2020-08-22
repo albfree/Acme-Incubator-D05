@@ -16,9 +16,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-
+	
+	<jstl:if test="${command == 'create'}">
 	<acme:form-textbox code="entrepreneur.investment-round.form.label.ticker" path="ticker"/>
+	</jstl:if>
 	<jstl:if test="${command != 'create'}">
+	<acme:form-textbox code="entrepreneur.investment-round.form.label.ticker" path="ticker" readonly="true"/>
 		<acme:form-moment 
 		 code="entrepreneur.investment-round.form.label.creation-date"
 		 path="creationDate"
@@ -31,12 +34,20 @@
 	<acme:form-money code="entrepreneur.investment-round.form.label.amount" path="amount"/>
 	<acme:form-url code="entrepreneur.investment-round.form.label.optional-link" path="optionalLink"/>
 	
-	<acme:form-submit test="${command != 'create'}" method="get" code="entrepreneur.investment-round.form.button.work-programme"
+	<acme:form-submit test="${command == 'show'}" method="get" code="entrepreneur.investment-round.form.button.work-programme"
 		action="/entrepreneur/activity/list?id=${ivID}" />
-	<acme:form-submit test="${command != 'create'}" method="get" code="entrepreneur.investment-round.form.button.accounting-records"
+	<acme:form-submit test="${command == 'show'}" method="get" code="entrepreneur.investment-round.form.button.accounting-records"
 		action="/entrepreneur/accounting-record/list?id=${ivID}" />
+	<acme:form-submit test="${command == 'show' and not finalMode}" code="entrepreneur.investment-round.form.button.update"
+		action="/entrepreneur/investment-round/update" />
+	<acme:form-submit test="${command == 'show'}" code="entrepreneur.investment-round.form.button.delete"
+		action="/entrepreneur/investment-round/delete" />
 	<acme:form-submit test="${command == 'create'}" code="entrepreneur.investment-round.form.button.create"
 		action="/entrepreneur/investment-round/create" />
+	<acme:form-submit test="${command == 'update' and not finalMode}" code="entrepreneur.investment-round.form.button.update"
+		action="/entrepreneur/investment-round/update" />	
+	<acme:form-submit test="${command == 'delete'}" code="entrepreneur.investment-round.form.button.delete"
+		action="/entrepreneur/investment-round/delete" />
 
 	<acme:form-return code="entrepreneur.investment-round.form.button.return"/>
 

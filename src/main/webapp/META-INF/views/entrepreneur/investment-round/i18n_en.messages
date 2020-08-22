@@ -23,6 +23,8 @@ entrepreneur.investment-round.form.label.optional-link = Optional link
 entrepreneur.investment-round.form.button.work-programme = Show work programme
 entrepreneur.investment-round.form.button.accounting-records = Show accounting records
 
+entrepreneur.investment-round.form.button.update = Update
+entrepreneur.investment-round.form.button.delete = Delete
 entrepreneur.investment-round.form.button.create = Create
 entrepreneur.investment-round.form.button.return = Return
 

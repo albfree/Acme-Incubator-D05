@@ -49,6 +49,7 @@ public class EntrepreneurInvestmentRoundShowService implements AbstractShowServi
 		int ivID = entity.getId();
 
 		model.setAttribute("ivID", ivID);
+		model.setAttribute("finalMode", entity.sumActivitiesBudgets());
 
 	}
 
