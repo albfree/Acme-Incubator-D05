@@ -1,9 +1,12 @@
 
 package acme.features.entrepreneur.investmentRound;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.applications.Application;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Model;
@@ -50,6 +53,10 @@ public class EntrepreneurInvestmentRoundShowService implements AbstractShowServi
 
 		model.setAttribute("ivID", ivID);
 		model.setAttribute("finalMode", entity.sumActivitiesBudgets());
+
+		Collection<Application> applications;
+		applications = this.repository.findApplicationsByInvestmentRoundId(ivID);
+		model.setAttribute("haveApplications", applications != null);
 
 	}
 

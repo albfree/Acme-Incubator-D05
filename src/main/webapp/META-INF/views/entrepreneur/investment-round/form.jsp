@@ -27,12 +27,24 @@
 		 path="creationDate"
 		 readonly="true"/>
 	</jstl:if>
+	
+	<jstl:if test="${not finalMode}">
 	<acme:form-textbox code="entrepreneur.investment-round.form.label.kind-of-round" 
 		placeholder="SEED, ANGEL, SERIES-A, SERIES-B, SERIES-C, BRIDGE" path="kindOfRound"/>
 	<acme:form-textbox code="entrepreneur.investment-round.form.label.title" path="title"/>
 	<acme:form-textarea code="entrepreneur.investment-round.form.label.description" path="description"/>
 	<acme:form-money code="entrepreneur.investment-round.form.label.amount" path="amount"/>
-	<acme:form-url code="entrepreneur.investment-round.form.label.optional-link" path="optionalLink"/>
+	<acme:form-url code="entrepreneur.investment-round.form.label.optional-link" path="optionalLink"/>	
+	</jstl:if>
+	
+	<jstl:if test="${finalMode}">
+	<acme:form-textbox code="entrepreneur.investment-round.form.label.kind-of-round" 
+		placeholder="SEED, ANGEL, SERIES-A, SERIES-B, SERIES-C, BRIDGE" path="kindOfRound" readonly="true"/>
+	<acme:form-textbox code="entrepreneur.investment-round.form.label.title" path="title" readonly="true"/>
+	<acme:form-textarea code="entrepreneur.investment-round.form.label.description" path="description" readonly="true"/>
+	<acme:form-money code="entrepreneur.investment-round.form.label.amount" path="amount" readonly="true"/>
+	<acme:form-url code="entrepreneur.investment-round.form.label.optional-link" path="optionalLink" readonly="true"/>
+	</jstl:if>
 	
 	<acme:form-submit test="${command == 'show'}" method="get" code="entrepreneur.investment-round.form.button.work-programme"
 		action="/entrepreneur/activity/list?id=${ivID}" />
@@ -40,13 +52,13 @@
 		action="/entrepreneur/accounting-record/list?id=${ivID}" />
 	<acme:form-submit test="${command == 'show' and not finalMode}" code="entrepreneur.investment-round.form.button.update"
 		action="/entrepreneur/investment-round/update" />
-	<acme:form-submit test="${command == 'show'}" code="entrepreneur.investment-round.form.button.delete"
+	<acme:form-submit test="${command == 'show' and not haveApplications}" code="entrepreneur.investment-round.form.button.delete"
 		action="/entrepreneur/investment-round/delete" />
 	<acme:form-submit test="${command == 'create'}" code="entrepreneur.investment-round.form.button.create"
 		action="/entrepreneur/investment-round/create" />
 	<acme:form-submit test="${command == 'update' and not finalMode}" code="entrepreneur.investment-round.form.button.update"
 		action="/entrepreneur/investment-round/update" />	
-	<acme:form-submit test="${command == 'delete'}" code="entrepreneur.investment-round.form.button.delete"
+	<acme:form-submit test="${command == 'delete' and not haveApplications}" code="entrepreneur.investment-round.form.button.delete"
 		action="/entrepreneur/investment-round/delete" />
 
 	<acme:form-return code="entrepreneur.investment-round.form.button.return"/>

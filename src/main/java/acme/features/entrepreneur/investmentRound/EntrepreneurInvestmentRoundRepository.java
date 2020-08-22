@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.applications.Application;
 import acme.entities.customizations.Customization;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
@@ -29,5 +30,8 @@ public interface EntrepreneurInvestmentRoundRepository extends AbstractRepositor
 
 	@Query("select c from Customization c")
 	List<Customization> findCustomizations();
+
+	@Query("select a from Application a where a.investment.id = ?1")
+	Collection<Application> findApplicationsByInvestmentRoundId(int id);
 
 }
