@@ -24,7 +24,8 @@
 		 path="creationDate"
 		 readonly="true"/>
 	</jstl:if>
-	<acme:form-textbox code="entrepreneur.investment-round.form.label.kind-of-round" path="kindOfRound"/>
+	<acme:form-textbox code="entrepreneur.investment-round.form.label.kind-of-round" 
+		placeholder="SEED, ANGEL, SERIES-A, SERIES-B, SERIES-C, BRIDGE" path="kindOfRound"/>
 	<acme:form-textbox code="entrepreneur.investment-round.form.label.title" path="title"/>
 	<acme:form-textarea code="entrepreneur.investment-round.form.label.description" path="description"/>
 	<acme:form-money code="entrepreneur.investment-round.form.label.amount" path="amount"/>

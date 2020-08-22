@@ -114,10 +114,6 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 			errors.state(request, !this.isSpamText(entity.getDescription()), "description", "entrepreneur.investment-round.error.spam");
 		}
 
-		if (!errors.hasErrors("optionalLink") && entity.getOptionalLink() != "" && entity.getOptionalLink() != null) {
-			errors.state(request, !this.isSpamText(entity.getOptionalLink()), "optionalLink", "entrepreneur.investment-round.error.spam");
-		}
-
 	}
 
 	private boolean isSpamText(final String textToCheck) {
