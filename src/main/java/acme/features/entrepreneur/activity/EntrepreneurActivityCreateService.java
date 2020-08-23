@@ -63,6 +63,12 @@ public class EntrepreneurActivityCreateService implements AbstractCreateService<
 		assert request != null;
 
 		Activity result = new Activity();
+		int investmentID;
+		InvestmentRound investment;
+
+		investmentID = request.getModel().getInteger("invId");
+		investment = this.repository.findOneInvestmentRoundById(investmentID);
+		result.setInvestment(investment);
 
 		return result;
 	}
