@@ -17,6 +17,8 @@ entrepreneur.activity.form.label.end-date-time = End date
 entrepreneur.activity.form.label.budget = Budget
 
 entrepreneur.activity.form.button.create = Create
+entrepreneur.activity.form.button.update = Update
+entrepreneur.activity.form.button.delete = Delete
 entrepreneur.activity.form.button.return = Return
 
 entrepreneur.activity.error.start-date.before = The start date must be before the end date

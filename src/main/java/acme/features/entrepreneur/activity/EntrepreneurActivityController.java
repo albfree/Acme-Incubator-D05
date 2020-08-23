@@ -25,12 +25,20 @@ public class EntrepreneurActivityController extends AbstractController<Entrepren
 	@Autowired
 	private EntrepreneurActivityCreateService	createService;
 
+	@Autowired
+	private EntrepreneurActivityUpdateService	updateService;
+
+	@Autowired
+	private EntrepreneurActivityDeleteService	deleteService;
+
 
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 	}
 
 }

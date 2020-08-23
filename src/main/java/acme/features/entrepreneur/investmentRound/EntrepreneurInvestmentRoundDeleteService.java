@@ -93,6 +93,8 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 
 	@Override
 	public void delete(final Request<InvestmentRound> request, final InvestmentRound entity) {
+		assert request != null;
+		assert entity != null;
 
 		if (entity.getWorkProgramme() != null && !entity.getWorkProgramme().isEmpty()) {
 			this.repository.deleteAll(entity.getWorkProgramme());
@@ -118,7 +120,6 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 		}
 
 		this.repository.delete(entity);
-
 	}
 
 }
