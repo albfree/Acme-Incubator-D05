@@ -63,12 +63,6 @@ public class EntrepreneurInvestmentRoundDeleteService implements AbstractDeleteS
 		assert model != null;
 
 		request.unbind(entity, model, "ticker", "creationDate", "kindOfRound", "title", "description", "amount", "optionalLink");
-
-		//		int ivID = entity.getId();
-		//
-		//		Collection<Application> applications;
-		//		applications = this.repository.findApplicationsByInvestmentRoundId(ivID);
-		//		model.setAttribute("haveApplications", !applications.isEmpty());
 	}
 
 	@Override

@@ -30,13 +30,15 @@ public class EntrepreneurActivityUpdateService implements AbstractUpdateService<
 		assert request != null;
 
 		boolean result;
-		int investmentID;
+		int activityID;
+		Activity activity;
 		InvestmentRound investment;
 		Entrepreneur entrepreneur;
 		Principal principal;
 
-		investmentID = request.getModel().getInteger("invId");
-		investment = this.repository.findOneInvestmentRoundById(investmentID);
+		activityID = request.getModel().getInteger("id");
+		activity = this.repository.findOneActivityById(activityID);
+		investment = activity.getInvestment();
 		entrepreneur = investment.getEntrepreneur();
 		principal = request.getPrincipal();
 
@@ -61,11 +63,6 @@ public class EntrepreneurActivityUpdateService implements AbstractUpdateService<
 		assert model != null;
 
 		request.unbind(entity, model, "title", "startDateTime", "endDateTime", "budget");
-
-		int investmentID;
-
-		investmentID = request.getModel().getInteger("invId");
-		model.setAttribute("ivID", investmentID);
 	}
 
 	@Override

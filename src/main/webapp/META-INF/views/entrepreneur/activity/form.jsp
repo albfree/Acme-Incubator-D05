@@ -23,15 +23,15 @@
 	<acme:form-money code="entrepreneur.activity.form.label.budget" path="budget"/>
 		
 	<acme:form-submit test="${command == 'show' and not finalMode}" code="entrepreneur.activity.form.button.update"
-		action="/entrepreneur/activity/update?invId=${ivID}" />
+		action="/entrepreneur/activity/update" />
 	<acme:form-submit test="${command == 'show' and not finalMode}" code="entrepreneur.activity.form.button.delete"
-		action="/entrepreneur/activity/delete?invId=${ivID}" />
+		action="/entrepreneur/activity/delete" />
 	<acme:form-submit test="${command == 'create'}" code="entrepreneur.activity.form.button.create"
 		action="/entrepreneur/activity/create?invId=${ivID}" />
 	<acme:form-submit test="${command == 'update'}" code="entrepreneur.activity.form.button.update"
-		action="/entrepreneur/activity/update?invId=${ivID}" />	
+		action="/entrepreneur/activity/update" />	
 	<acme:form-submit test="${command == 'delete'}" code="entrepreneur.activity.form.button.delete"
-		action="/entrepreneur/activity/delete?invId=${ivID}" />
+		action="/entrepreneur/activity/delete" />
 
 	<acme:form-return code="entrepreneur.activity.form.button.return"/>
 	
