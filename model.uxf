@@ -510,9 +510,9 @@ ToolRecord
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>792</x>
       <y>408</y>
-      <w>216</w>
+      <w>344</w>
       <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
@@ -562,7 +562,7 @@ InvestmentRound
     <coordinates>
       <x>1160</x>
       <y>408</y>
-      <w>184</w>
+      <w>320</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
@@ -620,7 +620,7 @@ Application
 + status: String {NotBlank, Pattern(regexp = "^(PENDING|ACCEPTED|REJECTED)$")}
 + investment: InvestmentRound {ManyToOne(optional = false), NotNull, Valid}
 + investor: Investor {ManyToOne(optional = false), NotNull, Valid}
-+ rejectReason: String {Size(min = 1, max = 255)}</panel_attributes>
++ rejectReason: String {Size(min = 0, max = 255)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
