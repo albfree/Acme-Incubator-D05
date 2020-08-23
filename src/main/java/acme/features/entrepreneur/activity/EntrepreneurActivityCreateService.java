@@ -56,6 +56,11 @@ public class EntrepreneurActivityCreateService implements AbstractCreateService<
 		assert model != null;
 
 		request.unbind(entity, model, "title", "startDateTime", "endDateTime", "budget");
+
+		int investmentID;
+
+		investmentID = request.getModel().getInteger("invId");
+		model.setAttribute("ivID", investmentID);
 	}
 
 	@Override

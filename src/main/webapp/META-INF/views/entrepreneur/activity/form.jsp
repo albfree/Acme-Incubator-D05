@@ -23,8 +23,10 @@
 	<acme:form-money code="entrepreneur.activity.form.label.budget" path="budget"/>
 
 	<acme:form-submit test="${command == 'create'}" code="entrepreneur.activity.form.button.create"
-		action="/entrepreneur/activity/create" />
+		action="/entrepreneur/activity/create?invId=${ivID}" />
 
 	<acme:form-return code="entrepreneur.activity.form.button.return"/>
+	
+	<input id="ivID" name="ivID" value="${ivID}" type="hidden" />
 
 </acme:form>
