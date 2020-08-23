@@ -1,10 +1,15 @@
 
 package acme.features.entrepreneur.activity;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.activities.Activity;
+import acme.entities.customizations.Customization;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Errors;
@@ -86,7 +91,52 @@ public class EntrepreneurActivityCreateService implements AbstractCreateService<
 
 		if (!errors.hasErrors("startDateTime") && !errors.hasErrors("endDateTime")) {
 			errors.state(request, entity.getEndDateTime().after(entity.getStartDateTime()), "startDateTime", "entrepreneur.activity.error.start-date.before");
+			errors.state(request, entity.getStartDateTime().after(new Date()), "startDateTime", "entrepreneur.activity.error.date.invalid");
+			errors.state(request, entity.getEndDateTime().after(new Date()), "endDateTime", "entrepreneur.activity.error.date.invalid");
 		}
+
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !this.isSpamText(entity.getTitle()), "title", "entrepreneur.activity.error.spam");
+		}
+	}
+
+	private boolean isSpamText(final String textToCheck) {
+		boolean result = false;
+		Double numSpWordsInText = 0.;
+		Integer numOfWords = textToCheck.split(" ").length;
+		List<Customization> customization = this.repository.findCustomizations();
+
+		String spamWords = customization.get(0).getSpamWords();
+
+		String[] spamWordsArray = spamWords.split(";");
+
+		List<String> spamWordsList = Arrays.asList(spamWordsArray);
+
+		for (String sw : spamWordsList) {
+
+			numSpWordsInText = numSpWordsInText + this.timesAppearSpamWord(textToCheck.toLowerCase(), sw.toLowerCase(), 0.);
+
+			Double percentage = numSpWordsInText / numOfWords * 100;
+
+			if (percentage > customization.get(0).getThreshold()) {
+				result = true;
+				break;
+			}
+
+		}
+
+		return result;
+	}
+
+	private double timesAppearSpamWord(final String textToCheck, final String spamWord, Double numSpWord) {
+
+		if (textToCheck.contains(spamWord)) {
+			Integer index = textToCheck.indexOf(spamWord) + spamWord.length();
+			numSpWord += 1;
+			return this.timesAppearSpamWord(textToCheck.substring(index).trim(), spamWord, numSpWord);
+		}
+
+		return numSpWord;
 	}
 
 	@Override

@@ -20,3 +20,5 @@ entrepreneur.activity.form.button.create = Crear
 entrepreneur.activity.form.button.return = Volver
 
 entrepreneur.activity.error.start-date.before = La fecha de inicio debe ser anterior a la fecha de fin
+entrepreneur.activity.error.date.invalid = La fecha debe ser posterior a la actual
+entrepreneur.activity.error.spam = Esta cadena de texto contiene un porcentaje alto de palabras spam
