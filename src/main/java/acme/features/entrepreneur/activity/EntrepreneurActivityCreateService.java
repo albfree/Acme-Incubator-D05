@@ -145,7 +145,6 @@ public class EntrepreneurActivityCreateService implements AbstractCreateService<
 		assert entity != null;
 
 		this.repository.save(entity);
-
 	}
 
 }
