@@ -20,6 +20,7 @@ entrepreneur.investment-round.form.label.description = Descripción
 entrepreneur.investment-round.form.label.amount = Cantidad
 entrepreneur.investment-round.form.label.optional-link = Enlace opcional
 
+entrepreneur.investment-round.form.button.activity.create = Añadir actividad
 entrepreneur.investment-round.form.button.work-programme = Ver programa de trabajo
 entrepreneur.investment-round.form.button.accounting-records = Ver registros contables
 

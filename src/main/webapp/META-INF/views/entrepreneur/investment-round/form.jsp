@@ -46,6 +46,8 @@
 	<acme:form-url code="entrepreneur.investment-round.form.label.optional-link" path="optionalLink" readonly="true"/>
 	</jstl:if>
 	
+	<acme:form-submit test="${command == 'show' and not finalMode}" method="get" code="entrepreneur.investment-round.form.button.activity.create"
+		action="/entrepreneur/activity/create?invId=${ivID}" />
 	<acme:form-submit test="${command == 'show'}" method="get" code="entrepreneur.investment-round.form.button.work-programme"
 		action="/entrepreneur/activity/list?id=${ivID}" />
 	<acme:form-submit test="${command == 'show'}" method="get" code="entrepreneur.investment-round.form.button.accounting-records"
