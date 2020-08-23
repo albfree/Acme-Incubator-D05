@@ -15,13 +15,42 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<acme:form readonly="true">
+<acme:form>
 
-	<acme:form-textbox code="entrepreneur.application.form.label.ticker" path="ticker"/>
-	<acme:form-moment code="entrepreneur.application.form.label.creation-date" path="creationDate"/>
-	<acme:form-textarea code="entrepreneur.application.form.label.statement" path="statement"/>
-	<acme:form-money code="entrepreneur.application.form.label.investment-offer" path="investmentOffer"/>
-	<acme:form-money code="entrepreneur.application.form.label.status" path="status"/>
+	<acme:form-textbox code="entrepreneur.application.form.label.ticker" path="ticker" readonly="true"/>
+	<acme:form-moment code="entrepreneur.application.form.label.creation-date" path="creationDate" readonly="true"/>
+	<acme:form-textarea code="entrepreneur.application.form.label.statement" path="statement" readonly="true"/>
+	<acme:form-money code="entrepreneur.application.form.label.investment-offer" path="investmentOffer" readonly="true"/>
+	<jstl:if test="${status != 'PENDING' && command == 'show'}">
+		<acme:form-textbox code="entrepreneur.application.form.label.status" path="status" readonly="true"/>
+	</jstl:if>
+	<jstl:if test="${status == 'PENDING' || command == 'update'}">
+		<acme:form-select  code="entrepreneur.application.form.label.status" path="status" readonly="false">
+			<acme:form-option code="entrepreneur.application.form.label.status.pending" selected="${status == PENDING}" value="PENDING"/>
+			<acme:form-option code="entrepreneur.application.form.label.status.accepted" selected="${status == ACCEPTED}" value="ACCEPTED"/>
+			<acme:form-option code="entrepreneur.application.form.label.status.rejected" selected="${status == REJECTED}" value="REJECTED"/>
+		</acme:form-select>
+	</jstl:if>
+	
+	<jstl:if test="${status == 'REJECTED' && command == 'show'}">
+		<acme:form-textarea  code="entrepreneur.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
+	</jstl:if>
+
+	<jstl:if test="${status == 'PENDING' || command == 'update'}">
+		<acme:form-textarea  code="entrepreneur.application.form.label.rejectReason" path="rejectReason" readonly="false"/>
+	</jstl:if>
+	
+	<!--<acme:form-submit test="${status == 'PENDING' && command == 'show'}" 
+		code="entrepreneur.application.form.button.update"
+		action="/entrepreneur/application/update?id=${id}" method="get"/>
+
+	<acme:form-submit test="${command == 'update'}" 
+		code="entrepreneur.application.form.button.update"
+		action="/entrepreneur/application/update?id=${id}" method="post"/>-->
+		
+	<acme:form-submit test="${status == 'PENDING' || command == 'update'}" 
+		code="entrepreneur.application.form.button.update"
+		action="/entrepreneur/application/update"/>
 
 	<acme:form-return code="entrepreneur.application.form.button.return"/>
 

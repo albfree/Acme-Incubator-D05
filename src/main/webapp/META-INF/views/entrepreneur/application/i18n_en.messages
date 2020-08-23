@@ -17,5 +17,14 @@ entrepreneur.application.form.label.creation-date = Creation date
 entrepreneur.application.form.label.statement = Statement
 entrepreneur.application.form.label.investment-offer = Investment offer
 entrepreneur.application.form.label.status = Status
+entrepreneur.application.form.label.rejectReason = Reject Reason
+
+entrepreneur.application.form.label.status.pending = Pending
+entrepreneur.application.form.label.status.accepted = Accepted
+entrepreneur.application.form.label.status.rejected = Rejected
+
+entrepreneur.application.form.button.update = Update
+
+entrepreneur.application.error.notBlank = If rejected, reason cannot be null
 
 entrepreneur.application.form.button.return = Return

@@ -605,10 +605,10 @@ Activity
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1152</x>
-      <y>616</y>
-      <w>344</w>
-      <h>128</h>
+      <x>1072</x>
+      <y>608</y>
+      <w>504</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
@@ -619,7 +619,8 @@ Application
 + investmentOffer: Money {NotNull, Valid}
 + status: String {NotBlank, Pattern(regexp = "^(PENDING|ACCEPTED|REJECTED)$")}
 + investment: InvestmentRound {ManyToOne(optional = false), NotNull, Valid}
-+ investor: Investor {ManyToOne(optional = false), NotNull, Valid}</panel_attributes>
++ investor: Investor {ManyToOne(optional = false), NotNull, Valid}
++ rejectReason: String {Size(min = 1, max = 255)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -640,15 +641,15 @@ has v</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1320</x>
-      <y>736</y>
+      <y>744</y>
       <w>56</w>
-      <h>104</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=  0..*
 has ^</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -656,18 +657,18 @@ has ^</panel_attributes>
       <x>1232</x>
       <y>496</y>
       <w>88</w>
-      <h>136</h>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=  0..*
 created by ^</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1024</x>
+      <x>944</x>
       <y>504</y>
       <w>88</w>
       <h>336</h>
@@ -858,5 +859,19 @@ m1= 1
 m2= 0..*
 written by ^</panel_attributes>
     <additional_attributes>10.0;10.0;280.0;510.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1096</x>
+      <y>504</y>
+      <w>96</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+m2=  0..*
+accepted by ^</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
 </diagram>

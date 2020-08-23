@@ -44,8 +44,11 @@ public class EntrepreneurApplicationShowService implements AbstractShowService<E
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");
-
+		if (entity.getStatus().equals("REJECTED")) {
+			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status", "rejectReason");
+		} else {
+			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");
+		}
 	}
 
 	@Override

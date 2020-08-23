@@ -883,6 +883,19 @@
 		<property name="investor" ref="investor03Investor" />
 	</bean>
 	
+	<bean name="application06" class="acme.entities.applications.Application">
+		<property name="ticker" value="TEC-20-000008" />
+		<property name="creationDate" value="2020/08/12 15:21" />
+		<property name="statement" value="¡Vamos a por todas porque no vamos a quedarnos parados!" />
+		<property name="investmentOffer">
+			<ref bean="money05"/>
+		</property>
+		<property name="status" value="REJECTED" />
+		<property name="rejectReason" value="No nos interesa" />
+		<property name="investment" ref="investmentRound03" />
+		<property name="investor" ref="investor03Investor" />
+	</bean>
+	
 	<!-- Forums -->
 	
 	<bean name="forum01" class="acme.entities.forums.Forum">

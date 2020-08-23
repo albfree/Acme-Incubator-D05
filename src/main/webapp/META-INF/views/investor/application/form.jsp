@@ -22,6 +22,9 @@
 	<acme:form-textarea code="investor.application.form.label.statement" path="statement"/>
 	<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer"/>
 	<acme:form-money code="investor.application.form.label.status" path="status"/>
+	<jstl:if test="${status == 'REJECTED'}">
+		<acme:form-textarea  code="investor.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
+	</jstl:if>
 
 	<acme:form-return code="investor.application.form.button.return"/>
 
