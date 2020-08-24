@@ -123,7 +123,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 			}
 		}
 
-		if (tickerIsCorrect && this.repository.findOneInvestmentRoundByTicker(entity.getTicker()) != null) {
+		if (tickerIsCorrect && this.repository.findOneApplicationByTicker(entity.getTicker()) != null) {
 			errors.state(request, false, "ticker", "investor.application.error.ticker.exists");
 		}
 	}
