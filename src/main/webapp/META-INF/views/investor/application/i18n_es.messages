@@ -18,4 +18,9 @@ investor.application.form.label.statement = Declaración
 investor.application.form.label.investment-offer = Oferta de inversión
 investor.application.form.label.status = Estado
 
+investor.application.form.button.apply = Aplicar
 investor.application.form.button.return = Volver
+
+investor.application.error.ticker.sector = Los tres primeros carácteres deben ser igual (pero en mayúsculas) a los de tu sector de inversor: {0}. En caso de ser uno o dos carácteres, añade una o dos X
+investor.application.error.ticker.year = En la segunda cadena debe introducir los dos últimos dígitos del año actual
+investor.application.error.ticker.exists = Elige otro número de ticker, el que has introducido ya está en uso

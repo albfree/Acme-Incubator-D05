@@ -15,14 +15,26 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<acme:form readonly="true">
+<acme:form>
 
-	<acme:form-textbox code="investor.application.form.label.ticker" path="ticker"/>
-	<acme:form-moment code="investor.application.form.label.creation-date" path="creationDate"/>
-	<acme:form-textarea code="investor.application.form.label.statement" path="statement"/>
-	<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer"/>
-	<acme:form-money code="investor.application.form.label.status" path="status"/>
+	<jstl:if test="${command == 'create'}">
+		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" />
+		<acme:form-textarea code="investor.application.form.label.statement" path="statement" />
+		<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer" />
+	</jstl:if>
+	<jstl:if test="${command == 'show'}">
+		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" readonly="true" />
+		<acme:form-moment code="investor.application.form.label.creation-date" path="creationDate" readonly="true" />
+		<acme:form-textarea code="investor.application.form.label.statement" path="statement" readonly="true" />
+		<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer" readonly="true" />
+		<acme:form-money code="investor.application.form.label.status" path="status" readonly="true" />
+	</jstl:if>
+	
+	<acme:form-submit test="${command == 'create'}" code="investor.application.form.button.apply"
+		action="/investor/application/create?invId=${ivID}" />
 
-	<acme:form-return code="investor.application.form.button.return"/>
+	<acme:form-return code="investor.application.form.button.return" />
+	
+	<input id="ivID" name="ivID" value="${ivID}" type="hidden" />
 
 </acme:form>
