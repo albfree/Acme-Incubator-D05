@@ -81,6 +81,10 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 		if (!errors.hasErrors("status") && entity.getStatus().equals("REJECTED") && !errors.hasErrors("rejectReason")) {
 			errors.state(request, !entity.getRejectReason().isEmpty(), "rejectReason", "entrepreneur.application.error.justification");
 		}
+
+		if (!errors.hasErrors("status") && entity.getStatus().equals("PENDING")) {
+			errors.state(request, false, "status", "entrepreneur.application.error.pending");
+		}
 	}
 
 	@Override

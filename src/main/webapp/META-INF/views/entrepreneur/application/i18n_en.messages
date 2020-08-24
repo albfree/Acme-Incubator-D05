@@ -24,7 +24,7 @@ entrepreneur.application.form.label.status.accept = Accept
 entrepreneur.application.form.label.status.reject = Reject
 
 entrepreneur.application.form.button.update = Update
-
-entrepreneur.application.error.justification = You must justify the rejection
-
 entrepreneur.application.form.button.return = Return
+
+entrepreneur.application.error.pending = You must accept or reject the request
+entrepreneur.application.error.justification = You must justify the rejection
