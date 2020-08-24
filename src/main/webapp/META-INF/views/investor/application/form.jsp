@@ -30,7 +30,7 @@
 		<acme:form-money code="investor.application.form.label.status" path="status" readonly="true" />
 	</jstl:if>
 	
-	<jstl:if test="${status != 'PENDING'}">
+	<jstl:if test="${status != 'PENDING' and command == 'show'}">
 		<acme:form-textarea  code="investor.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
 	</jstl:if>
 	
