@@ -100,16 +100,16 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 
 		if (!errors.hasErrors("ticker")) {
 			String[] ticker = entity.getTicker().split("-");
-			String entrepreneurSector;
+			String investorSector;
 
 			if (entity.getInvestor().getActivitySector().length() >= 3) {
-				entrepreneurSector = entity.getInvestor().getActivitySector().substring(0, 3).toUpperCase();
+				investorSector = entity.getInvestor().getActivitySector().substring(0, 3).toUpperCase();
 			} else {
-				entrepreneurSector = entity.getInvestor().getActivitySector().toUpperCase();
+				investorSector = entity.getInvestor().getActivitySector().toUpperCase();
 			}
 
-			if (entrepreneurSector.length() == 3 && !entrepreneurSector.equals(ticker[0]) || entrepreneurSector.length() == 2 && !ticker[0].equals(entrepreneurSector + "X")
-				|| entrepreneurSector.length() == 1 && !ticker[0].equals(entrepreneurSector + "XX")) {
+			if (investorSector.length() == 3 && !investorSector.equals(ticker[0]) || investorSector.length() == 2 && !ticker[0].equals(investorSector + "X")
+				|| investorSector.length() == 1 && !ticker[0].equals(investorSector + "XX")) {
 				tickerIsCorrect = false;
 				errors.state(request, false, "ticker", "investor.application.error.ticker.sector", entity.getInvestor().getActivitySector());
 			}
