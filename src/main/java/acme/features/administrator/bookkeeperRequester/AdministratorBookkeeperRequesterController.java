@@ -1,5 +1,5 @@
 
-package acme.features.bookkeeper.accountingRecord;
+package acme.features.administrator.bookkeeperRequester;
 
 import javax.annotation.PostConstruct;
 
@@ -7,28 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.records.AccountingRecord;
-import acme.entities.roles.Bookkeeper;
+import acme.entities.roles.BookkeeperRequester;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
+import acme.framework.entities.Administrator;
 
 @Controller
-@RequestMapping("/bookkeeper/accounting-record/")
-public class BookkeeperAccountingRecordController extends AbstractController<Bookkeeper, AccountingRecord> {
+@RequestMapping("/administrator/bookkeeper-requester/")
+public class AdministratorBookkeeperRequesterController extends AbstractController<Administrator, BookkeeperRequester> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private BookkeeperAccountingRecordListService	listService;
+	private AdministratorBookkeeperRequesterListService		listService;
 
 	@Autowired
-	private BookkeeperAccountingRecordShowService	showService;
+	private AdministratorBookkeeperRequesterShowService		showService;
 
 	@Autowired
-	private BookkeeperAccountingRecordCreateService	createService;
+	private AdministratorBookkeeperRequesterDeleteService	deleteService;
 
 	@Autowired
-	private BookkeeperAccountingRecordUpdateService	updateService;
+	private AdministratorBookkeeperRequesterCreateService	createService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -37,8 +37,8 @@ public class BookkeeperAccountingRecordController extends AbstractController<Boo
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
-		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 	}
 
 }
