@@ -620,7 +620,7 @@ Application
 + status: String {NotBlank, Pattern(regexp = "^(PENDING|ACCEPTED|REJECTED)$")}
 + investment: InvestmentRound {ManyToOne(optional = false), NotNull, Valid}
 + investor: Investor {ManyToOne(optional = false), NotNull, Valid}
-+ rejectReason: String {Size(min = 0, max = 255)}</panel_attributes>
++ rejectReason: String {Size(max = 255)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
