@@ -14,11 +14,11 @@
 	</jstl:if>
 
 	<%-- Acceso create, show a borrador (modificable) o update--%>
-	<jstl:if test="${command == 'create' or command == 'update' or command == 'show' && status == 'DRAFT'}">
+	<jstl:if test="${command == 'create' or command == 'update' or command == 'show' and status == 'DRAFT'}">
 		<acme:form-textbox code="bookkeeper.accounting-record.form.label.title" path="title" />
 		<acme:form-select code="bookkeeper.accounting-record.form.label.status" path="status">
-			<acme:form-option code="bookkeeper.accounting-record.form.label.status.draft" value="DRAFT" />
-			<acme:form-option code="bookkeeper.accounting-record.form.label.status.published" value="PUBLISHED" />
+			<acme:form-option code="bookkeeper.accounting-record.form.label.status.draft" selected="${status == 'DRAFT'}" value="DRAFT" />
+			<acme:form-option code="bookkeeper.accounting-record.form.label.status.published" selected="${status == 'PUBLISHED'}" value="PUBLISHED" />
 		</acme:form-select>
 		<acme:form-textarea code="bookkeeper.accounting-record.form.label.body" path="body" />
 	</jstl:if>
