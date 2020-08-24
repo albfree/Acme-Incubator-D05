@@ -33,20 +33,22 @@
 	</jstl:if>
 	
 	<br/>
-	
-	<acme:form-submit test="${command == 'show'}" method="get" 
-		code="authenticated.forum.form.button.messages"
-		action="/authenticated/message/list?id=${forumID}" />
-	<acme:form-submit test="${command == 'show'}" method="get"
-		code="authenticated.forum.form.button.message.create"
-		action="/authenticated/message/create?forumId=${forumID}" />
+	<jstl:if test="${command != 'create'}">
+		<acme:form-submit test="${command == 'show'}" method="get" 
+			code="authenticated.forum.form.button.messages"
+			action="/authenticated/message/list?id=${forumID}" />
+		<acme:form-submit test="${command == 'show'}" method="get"
+			code="authenticated.forum.form.button.message.create"
+			action="/authenticated/message/create?forumId=${forumID}" />
 
-	<acme:form-submit test="${imCreator == 'true'}"
-		code="authenticated.forum.form.button.update"
-		action="/authenticated/forum/update" />
-	<acme:form-submit test="${imCreator == 'true'}" 
-		code="authenticated.forum.form.button.delete"
-		action="/authenticated/forum/delete" />
+		<acme:form-submit test="${imCreator == 'true'}"
+			code="authenticated.forum.form.button.update"
+			action="/authenticated/forum/update" />
+		<acme:form-submit test="${imCreator == 'true'}" 
+			code="authenticated.forum.form.button.delete"
+			action="/authenticated/forum/delete" />
+		
+	</jstl:if>
 	<acme:form-submit test="${command == 'create'}" 
 		code="authenticated.forum.form.button.create"
 		action="/authenticated/forum/create" />

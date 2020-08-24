@@ -62,6 +62,8 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 			model.setAttribute(uaId.toString(), false);
 		}
 
+		model.setAttribute("imCreator", true);
+
 		request.unbind(entity, model, "title");
 	}
 
