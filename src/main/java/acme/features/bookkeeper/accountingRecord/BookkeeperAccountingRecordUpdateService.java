@@ -36,7 +36,7 @@ public class BookkeeperAccountingRecordUpdateService implements AbstractUpdateSe
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		request.bind(entity, errors, "creationMoment", "bookkeeper", "investment");
 	}
 
 	@Override
@@ -45,8 +45,7 @@ public class BookkeeperAccountingRecordUpdateService implements AbstractUpdateSe
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "status", "creationMoment", "body", "bookkeeper", "investmentRound");
-
+		request.unbind(entity, model, "title", "status", "creationMoment", "body", "bookkeeper.userAccount.identity.fullName", "investmentRound.ticker");
 	}
 
 	@Override

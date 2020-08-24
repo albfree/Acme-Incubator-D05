@@ -10,17 +10,12 @@ import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.records.AccountingRecord;
 import acme.entities.roles.Bookkeeper;
 import acme.framework.components.Errors;
-import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.components.Response;
-import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractCreateService;
 
 @Service
 public class BookkeeperAccountingRecordCreateService implements AbstractCreateService<Bookkeeper, AccountingRecord> {
-
-	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private BookkeeperAccountingRecordRepository repository;
@@ -30,7 +25,13 @@ public class BookkeeperAccountingRecordCreateService implements AbstractCreateSe
 	public boolean authorise(final Request<AccountingRecord> request) {
 		assert request != null;
 
-		return true;
+		int investmentId;
+		InvestmentRound investment;
+
+		investmentId = request.getModel().getInteger("irId");
+		investment = this.repository.findOneInvestmentRoundById(investmentId);
+
+		return investment.sumActivitiesBudgets();
 	}
 
 	@Override
@@ -48,11 +49,9 @@ public class BookkeeperAccountingRecordCreateService implements AbstractCreateSe
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "status", "creationMoment", "body", "bookkeeper", "investmentRound");
+		request.unbind(entity, model, "title", "status", "body");
 
-		if (request.isMethod(HttpMethod.GET)) {
-			model.setAttribute("irId", request.getModel().getAttribute("irId"));
-		}
+		model.setAttribute("irId", request.getModel().getAttribute("irId"));
 	}
 
 	@Override
@@ -60,16 +59,16 @@ public class BookkeeperAccountingRecordCreateService implements AbstractCreateSe
 		assert request != null;
 
 		AccountingRecord result = new AccountingRecord();
-		Integer bookkeeperId = request.getPrincipal().getActiveRoleId();
+		int bookkeeperId = request.getPrincipal().getActiveRoleId();
 		Bookkeeper bookkeeper = this.repository.findOneBookkeeperById(bookkeeperId);
 
-		Integer irId = request.getModel().getInteger("irId");
-		InvestmentRound ir = this.repository.findOneInvestmentRoundById(irId);
+		int irId = request.getModel().getInteger("irId");
+		InvestmentRound investment = this.repository.findOneInvestmentRoundById(irId);
 
 		Date moment = new Date(System.currentTimeMillis() - 1);
 
 		result.setBookkeeper(bookkeeper);
-		result.setInvestmentRound(ir);
+		result.setInvestmentRound(investment);
 		result.setCreationMoment(moment);
 
 		return result;
@@ -87,29 +86,11 @@ public class BookkeeperAccountingRecordCreateService implements AbstractCreateSe
 		assert request != null;
 		assert entity != null;
 
-		Integer bookkeeperId = request.getPrincipal().getActiveRoleId();
-		Bookkeeper bookkeeper = this.repository.findOneBookkeeperById(bookkeeperId);
-
-		Integer irId = request.getModel().getInteger("irId");
-		InvestmentRound ir = this.repository.findOneInvestmentRoundById(irId);
-
 		Date moment = new Date(System.currentTimeMillis() - 1);
 
-		entity.setBookkeeper(bookkeeper);
-		entity.setInvestmentRound(ir);
 		entity.setCreationMoment(moment);
 
 		this.repository.save(entity);
-	}
-
-	@Override
-	public void onSuccess(final Request<AccountingRecord> request, final Response<AccountingRecord> response) {
-		assert request != null;
-		assert response != null;
-
-		if (request.isMethod(HttpMethod.POST)) {
-			PrincipalHelper.handleUpdate();
-		}
 	}
 
 }
