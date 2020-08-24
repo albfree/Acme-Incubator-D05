@@ -126,6 +126,8 @@ master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.become-entrepreneur = Become an entrepreneur
 master.menu.user-account.entrepreneur = Entrepreneur data
+master.menu.user-account.become-investor = Become an investor
+master.menu.user-account.investor = Investor data
 
 # master.footer ###############################################################
 

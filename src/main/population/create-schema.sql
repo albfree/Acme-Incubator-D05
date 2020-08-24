@@ -43,6 +43,7 @@
         `creation_date` datetime(6),
         `investment_offer_amount` double precision,
         `investment_offer_currency` varchar(255),
+        `reject_reason` varchar(255),
         `statement` varchar(255),
         `status` varchar(255),
         `ticker` varchar(255),

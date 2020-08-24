@@ -167,6 +167,10 @@
 				access="!hasRole('Entrepreneur')" />
 			<acme:menu-suboption code="master.menu.user-account.entrepreneur" action="/authenticated/entrepreneur/update"
 				access="hasRole('Entrepreneur')" />
+			<acme:menu-suboption code="master.menu.user-account.become-investor" action="/authenticated/investor/create"
+				access="!hasRole('Investor')" />
+			<acme:menu-suboption code="master.menu.user-account.investor" action="/authenticated/investor/update"
+				access="hasRole('Investor')" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()" />

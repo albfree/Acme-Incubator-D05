@@ -30,6 +30,10 @@
 		<acme:form-money code="investor.application.form.label.status" path="status" readonly="true" />
 	</jstl:if>
 	
+	<jstl:if test="${status != 'PENDING'}">
+		<acme:form-textarea  code="investor.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
+	</jstl:if>
+	
 	<acme:form-submit test="${command == 'create'}" code="investor.application.form.button.apply"
 		action="/investor/application/create?invId=${ivID}" />
 
