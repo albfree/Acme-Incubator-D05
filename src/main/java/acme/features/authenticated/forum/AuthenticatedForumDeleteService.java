@@ -1,10 +1,14 @@
 
 package acme.features.authenticated.forum;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.forums.Forum;
+import acme.entities.messages.Message;
+import acme.features.authenticated.message.AuthenticatedMessageRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -16,7 +20,10 @@ import acme.framework.services.AbstractDeleteService;
 public class AuthenticatedForumDeleteService implements AbstractDeleteService<Authenticated, Forum> {
 
 	@Autowired
-	AuthenticatedForumRepository repository;
+	AuthenticatedForumRepository	repository;
+
+	@Autowired
+	AuthenticatedMessageRepository	MessageRepository;
 
 
 	@Override
@@ -76,7 +83,16 @@ public class AuthenticatedForumDeleteService implements AbstractDeleteService<Au
 
 	@Override
 	public void delete(final Request<Forum> request, final Forum entity) {
+		assert request != null;
+		assert entity != null;
 
+		int forumId;
+		Collection<Message> messages;
+
+		forumId = entity.getId();
+		messages = this.MessageRepository.findMessagesOfAForum(forumId);
+
+		this.MessageRepository.deleteAll(messages);
 		this.repository.delete(entity);
 	}
 

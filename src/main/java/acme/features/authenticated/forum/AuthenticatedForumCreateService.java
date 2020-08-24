@@ -46,8 +46,13 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 		assert model != null;
 
 		Collection<UserAccount> participants;
+		int accId;
+		UserAccount me;
 
+		accId = request.getPrincipal().getAccountId();
+		me = this.repository.findOneUserAccountById(accId);
 		participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
+		participants.remove(me);
 
 		List<String> userIds = participants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
 		List<String> userNames = participants.stream().map(x -> x.getUsername()).collect(Collectors.toList());

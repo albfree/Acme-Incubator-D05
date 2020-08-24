@@ -59,12 +59,17 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
+		UserAccount me;
+		int accId;
 
+		accId = request.getPrincipal().getAccountId();
+		me = this.repository.findOneUserAccountById(accId);
 		participants = entity.getParticipants();
 		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
 
 		List<String> userIds = possibleParticipants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
 		List<String> userNames = possibleParticipants.stream().map(x -> x.getUsername()).collect(Collectors.toList());
+		possibleParticipants.remove(me);
 
 		String[] ids = userIds.stream().toArray(i -> new String[i]);
 		String[] names = userNames.stream().toArray(i -> new String[i]);
