@@ -18,12 +18,12 @@
 <acme:form>
 
 	<jstl:if test="${command == 'create'}">
-		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" />
+		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" placeholder="SSS-YY-123456" />
 		<acme:form-textarea code="investor.application.form.label.statement" path="statement" />
 		<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer" />
 	</jstl:if>
 	<jstl:if test="${command == 'show'}">
-		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" readonly="true" />
+		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" placeholder="SSS-YY-123456" readonly="true" />
 		<acme:form-moment code="investor.application.form.label.creation-date" path="creationDate" readonly="true" />
 		<acme:form-textarea code="investor.application.form.label.statement" path="statement" readonly="true" />
 		<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer" readonly="true" />
