@@ -11,7 +11,7 @@
 authenticated.investor.investor.form.title.create = Hazte inversor
 authenticated.investor.investor.form.title.update = Actualizar datos de inversor
 
-authenticated.investor.form.label.firmName = Nombre de firma:
+authenticated.investor.form.label.firmName = Nombre de empresa:
 authenticated.investor.form.label.activitySector = Sector de actividad:
 authenticated.investor.form.label.profile = Perfil:
 
