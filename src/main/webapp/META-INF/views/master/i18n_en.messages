@@ -78,6 +78,7 @@ master.menu.administrator.challenge.create = New Challenge
 master.menu.administrator.shutdown = Shut down
 master.menu.administrator.tool-record.create = Create Tool Record
 master.menu.administrator.technology-record.create = Create Technology Record
+master.menu.bookkeeper-requester.list = List Bookkeeper Requests
 
 # master.menu.authenticated ###################################################
 
@@ -124,6 +125,8 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.bookkeeper-requester = Request to become a bookkeeper
+master.menu.user-account.bookkeeper-requester.general-data = Bookkeeper request
 
 # master.footer ###############################################################
 

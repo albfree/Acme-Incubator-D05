@@ -13,5 +13,6 @@ bookkeeper.investment-round.form.label.amount = Cantidad
 bookkeeper.investment-round.form.label.optional-link = Link opcional
 bookkeeper.investment-round.form.button.work-programme = Mostrar programa de trabajo
 bookkeeper.investment-round.form.button.accounting-records = Mostrar registros contables
+bookkeeper.investment-round.form.button.accounting-records.create = Crear registro contable
 
 bookkeeper.investment-round.form.button.return = Volver

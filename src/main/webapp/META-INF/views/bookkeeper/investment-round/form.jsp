@@ -18,6 +18,7 @@
 		action="/bookkeeper/activity/list?id=${ivID}" />
 	<acme:form-submit method="get" code="bookkeeper.investment-round.form.button.accounting-records"
 		action="/bookkeeper/accounting-record/list?id=${ivID}" />
+	<acme:form-submit code="bookkeeper.investment-round.form.button.accounting-records.create" method="get" action="/bookkeeper/accounting-record/create?irId=${id}"/>
 
 	<acme:form-return code="bookkeeper.investment-round.form.button.return" />
 

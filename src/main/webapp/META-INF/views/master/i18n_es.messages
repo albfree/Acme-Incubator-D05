@@ -78,6 +78,7 @@ master.menu.administrator.challenge.create = Nuevo Desafío
 master.menu.administrator.shutdown = Parar el sistema
 master.menu.administrator.tool-record.create = Crear Registro de Herramientas
 master.menu.administrator.technology-record.create = Crear Registro de Tecnología
+master.menu.bookkeeper-requester.list = Lista de solicitudes para contable
 
 # master.menu.authenticated ###################################################
 
@@ -124,6 +125,9 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+master.menu.user-account.bookkeeper-requester = Solicitar ser contable
+master.menu.user-account.bookkeeper-requester.general-data = Solicitud de contable
+
 
 ﻿# master.footer ###############################################################
 

@@ -10,5 +10,10 @@ bookkeeper.accounting-record.form.label.creationMoment = Creation moment
 bookkeeper.accounting-record.form.label.body = Body
 bookkeeper.accounting-record.form.label.bookkeeper = Bookkeeper
 bookkeeper.accounting-record.form.label.investmentRound = Investment Round ticker
+bookkeeper.accounting-record.form.label.status.draft = Draft
+bookkeeper.accounting-record.form.label.status.published = Published
+
 
 bookkeeper.accounting-record.form.button.return = Return
+bookkeeper.accounting-record.form.button.create = Create
+bookkeeper.accounting-record.form.button.update = Update
