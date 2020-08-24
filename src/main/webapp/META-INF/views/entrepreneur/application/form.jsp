@@ -31,9 +31,9 @@
 
 	<jstl:if test="${status == 'PENDING' or command == 'update'}">
 		<acme:form-select code="entrepreneur.application.form.label.status" path="status" readonly="false">
-			<acme:form-option code="entrepreneur.application.form.label.status.pending" selected="${status == PENDING}" value="PENDING" />
-			<acme:form-option code="entrepreneur.application.form.label.status.accept" selected="${status == ACCEPTED}" value="ACCEPTED" />
-			<acme:form-option code="entrepreneur.application.form.label.status.reject" selected="${status == REJECTED}" value="REJECTED" />
+			<acme:form-option code="entrepreneur.application.form.label.status.pending" selected="${status == 'PENDING'}" value="PENDING" />
+			<acme:form-option code="entrepreneur.application.form.label.status.accept" selected="${status == 'ACCEPTED'}" value="ACCEPTED" />
+			<acme:form-option code="entrepreneur.application.form.label.status.reject" selected="${status == 'REJECTED'}" value="REJECTED" />
 		</acme:form-select>
 	</jstl:if>
 
