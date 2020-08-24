@@ -10,50 +10,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.forums.Forum;
+import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
-import acme.framework.entities.Principal;
 import acme.framework.entities.UserAccount;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuthenticatedForumShowService implements AbstractShowService<Authenticated, Forum> {
+public class AuthenticatedForumUpdateService implements AbstractUpdateService<Authenticated, Forum> {
 
 	@Autowired
-	private AuthenticatedForumRepository repository;
+	AuthenticatedForumRepository repository;
 
 
 	@Override
 	public boolean authorise(final Request<Forum> request) {
 		assert request != null;
-
-		boolean result = false;
 		boolean imCreator;
-		boolean imParticipant;
-		int forumId;
-		int accId;
-		Forum forum;
-		Principal principal;
 		UserAccount user;
+		Forum forum;
+		int accId;
+		int forumId;
 
-		principal = request.getPrincipal();
-		accId = principal.getAccountId();
+		accId = request.getPrincipal().getAccountId();
 		user = this.repository.findOneUserAccountById(accId);
 		forumId = request.getModel().getInteger("id");
 		forum = this.repository.findOneForumById(forumId);
+		imCreator = forum.getCreator().equals(user);
 
-		imParticipant = forum.getParticipants().contains(user);
+		return imCreator;
+	}
 
-		if (forum.getInvestment() != null) {
-			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
-		} else {
-			imCreator = forum.getCreator() == user;
-		}
+	@Override
+	public void bind(final Request<Forum> request, final Forum entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
 
-		result = imCreator || imParticipant;
-
-		return result;
+		request.bind(entity, errors);
 	}
 
 	@Override
@@ -61,16 +56,6 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-
-		request.unbind(entity, model, "title");
-
-		int forumID = entity.getId();
-
-		model.setAttribute("forumID", forumID);
-
-		int accId = request.getPrincipal().getAccountId();
-		UserAccount user = this.repository.findOneUserAccountById(accId);
-		boolean imCreator = entity.getCreator().equals(user);
 
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
@@ -96,20 +81,48 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 
 		}
 
-		model.setAttribute("imCreator", imCreator);
+		request.unbind(entity, model, "title");
 	}
 
 	@Override
 	public Forum findOne(final Request<Forum> request) {
 		assert request != null;
-
-		Forum result;
+		Forum res;
 		int id;
 
 		id = request.getModel().getInteger("id");
-		result = this.repository.findOneForumById(id);
+		res = this.repository.findOneForumById(id);
+		return res;
+	}
 
-		return result;
+	@Override
+	public void validate(final Request<Forum> request, final Forum entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+	}
+
+	@Override
+	public void update(final Request<Forum> request, final Forum entity) {
+		assert request != null;
+		assert entity != null;
+		Collection<UserAccount> possibleParticipants;
+		Collection<UserAccount> participants;
+
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
+		participants = new ArrayList<UserAccount>();
+
+		for (UserAccount ua : possibleParticipants) {
+			Integer uaId = ua.getId();
+			boolean checked = request.getModel().getAttribute(uaId.toString(), boolean.class);
+			if (checked == true) {
+				participants.add(ua);
+			}
+		}
+
+		entity.setParticipants(participants);
+		this.repository.save(entity);
 	}
 
 }

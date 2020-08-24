@@ -14,13 +14,43 @@
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<acme:form readonly="true">
+<acme:form>
 
 	<acme:form-textbox code="authenticated.forum.form.label.title" path="title" />
-
-	<acme:form-submit method="get" code="authenticated.forum.form.button.messages"
+	
+	<jstl:if test="${imCreator == 'true'}">
+		<strong>
+			<spring:message code="authenticated.forum.form.label.participants"  />
+		</strong>
+		<div style="overflow-y: scroll; width: 50%; height: 50%; max-height: 100px; border: #000000 4px solid;">
+			<jstl:forEach items="${names}" var="name" varStatus="loop">
+				<acme:form-checkbox code="${name}" path="${ids[loop.index]}" />
+				<input type="hidden" value="on" name="_${ids[loop.index]}" />
+			</jstl:forEach>
+		</div>
+	</jstl:if>
+	
+	<br/>
+	
+	<acme:form-submit test="${command == 'show'}" method="get" 
+		code="authenticated.forum.form.button.messages"
 		action="/authenticated/message/list?id=${forumID}" />
+	<acme:form-submit test="${command == 'show'}" method="get"
+		code="authenticated.forum.form.button.message.create"
+		action="/authenticated/message/create?forumId=${forumID}" />
+
+	<acme:form-submit test="${imCreator == 'true'}"
+		code="authenticated.forum.form.button.update"
+		action="/authenticated/forum/update" />
+	<acme:form-submit test="${imCreator == 'true'}" 
+		code="authenticated.forum.form.button.delete"
+		action="/authenticated/forum/delete" />
+	<acme:form-submit test="${command == 'create'}" 
+		code="authenticated.forum.form.button.create"
+		action="/authenticated/forum/create" />
+		
 	<acme:form-return code="authenticated.forum.form.button.return" />
 
 </acme:form>

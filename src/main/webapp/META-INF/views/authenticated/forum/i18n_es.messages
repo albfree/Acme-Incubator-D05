@@ -11,6 +11,11 @@
 authenticated.forum.list.label.title = Título
 
 authenticated.forum.form.label.title = Título
+authenticated.forum.form.label.participants = Seleccione los articipantes
 
 authenticated.forum.form.button.messages = Ver mensajes
+authenticated.forum.form.button.message.create = Nuevo Mensaje
+authenticated.forum.form.button.create = Crear Foro
+authenticated.forum.form.button.update = Actualizar Foro
+authenticated.forum.form.button.delete = Eliminar Foro
 authenticated.forum.form.button.return = Volver

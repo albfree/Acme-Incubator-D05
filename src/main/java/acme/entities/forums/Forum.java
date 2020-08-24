@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -31,11 +32,15 @@ public class Forum extends DomainEntity {
 	private String							title;
 
 	@Valid
-	@OneToOne(optional = false)
+	@OneToOne(optional = true)
 	private InvestmentRound					investment;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
 	private Collection<@Valid UserAccount>	participants;
+
+	@Valid
+	@ManyToOne
+	private UserAccount						creator;
 
 }

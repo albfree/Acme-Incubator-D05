@@ -68,6 +68,8 @@
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.authenticated.forum.list" action="/authenticated/forum/list" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.authenticated.forum.create" action="/authenticated/forum/create" />
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.investment-round.list" action="/authenticated/investment-round/list" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.notice.list" action="/authenticated/notice/list" />

@@ -22,7 +22,13 @@ public interface AuthenticatedForumRepository extends AbstractRepository {
 	@Query("select ua from UserAccount ua where ua.id = ?1")
 	UserAccount findOneUserAccountById(int id);
 
+	@Query("select ua from UserAccount ua")
+	Collection<UserAccount> findManyUserAccount();
+
 	@Query("select f from Forum as f where ?1 member of f.participants")
 	Collection<Forum> findForumsIAmParticipant(UserAccount user);
+
+	@Query("select f from Forum f where f.creator.id = ?1")
+	Collection<Forum> findForumIAmCreator(int id);
 
 }

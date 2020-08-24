@@ -4,6 +4,7 @@ package acme.features.authenticated.message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.forums.Forum;
 import acme.entities.messages.Message;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -24,24 +25,31 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		assert request != null;
 
 		boolean result = false;
-		int id;
+		boolean imCreator;
+		boolean imParticipant;
+		int messageId;
+		int accId;
 		Message message;
+		Forum forum;
 		Principal principal;
+		UserAccount user;
 
-		id = request.getModel().getInteger("id");
-		message = this.repository.findOneMessageById(id);
 		principal = request.getPrincipal();
+		accId = principal.getAccountId();
+		user = this.repository.findOneUserAccountById(accId);
+		messageId = request.getModel().getInteger("id");
+		message = this.repository.findOneMessageById(messageId);
+		forum = message.getForum();
 
-		if (message.getForum().getInvestment().getEntrepreneur().getUserAccount().getId() == principal.getAccountId()) {
-			result = true;
+		imParticipant = forum.getParticipants().contains(user);
+
+		if (forum.getInvestment() != null) {
+			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
 		} else {
-			for (UserAccount ua : message.getForum().getParticipants()) {
-				if (ua.getId() == principal.getAccountId()) {
-					result = true;
-					break;
-				}
-			}
+			imCreator = forum.getCreator() == user;
 		}
+
+		result = imCreator || imParticipant;
 
 		return result;
 	}

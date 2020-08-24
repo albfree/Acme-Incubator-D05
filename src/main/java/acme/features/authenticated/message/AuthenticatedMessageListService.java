@@ -27,24 +27,29 @@ public class AuthenticatedMessageListService implements AbstractListService<Auth
 		assert request != null;
 
 		boolean result = false;
-		int id;
+		boolean imCreator;
+		boolean imParticipant;
+		int forumId;
+		int accId;
 		Forum forum;
 		Principal principal;
+		UserAccount user;
 
-		id = request.getModel().getInteger("id");
-		forum = this.repository.findOneForumById(id);
 		principal = request.getPrincipal();
+		accId = principal.getAccountId();
+		user = this.repository.findOneUserAccountById(accId);
+		forumId = request.getModel().getInteger("id");
+		forum = this.repository.findOneForumById(forumId);
 
-		if (forum.getInvestment().getEntrepreneur().getUserAccount().getId() == principal.getAccountId()) {
-			result = true;
+		imParticipant = forum.getParticipants().contains(user);
+
+		if (forum.getInvestment() != null) {
+			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
 		} else {
-			for (UserAccount ua : forum.getParticipants()) {
-				if (ua.getId() == principal.getAccountId()) {
-					result = true;
-					break;
-				}
-			}
+			imCreator = forum.getCreator() == user;
 		}
+
+		result = imCreator || imParticipant;
 
 		return result;
 	}

@@ -88,6 +88,7 @@ master.menu.authenticated.challenge = Desafíos
 master.menu.authenticated.overture.list = Lista de propuestas
 master.menu.authenticated.inquiry.list = Lista de consultas
 master.menu.authenticated.forum.list = Foros en los que participo
+master.menu.authenticated.forum.create = Crear Foro
 
 # master.menu.investor ###################################################
 

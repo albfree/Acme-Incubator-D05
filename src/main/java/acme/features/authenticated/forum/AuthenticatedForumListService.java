@@ -44,14 +44,17 @@ public class AuthenticatedForumListService implements AbstractListService<Authen
 
 		Collection<Forum> result;
 		Principal principal;
+		int id;
 
 		principal = request.getPrincipal();
+		id = principal.getAccountId();
 
-		result = this.repository.findForumsOfMyInvestmentRounds(principal.getAccountId());
+		result = this.repository.findForumsOfMyInvestmentRounds(id);
 
-		UserAccount user = this.repository.findOneUserAccountById(principal.getAccountId());
+		UserAccount user = this.repository.findOneUserAccountById(id);
 
 		result.addAll(this.repository.findForumsIAmParticipant(user));
+		result.addAll(this.repository.findForumIAmCreator(id));
 
 		return result;
 	}

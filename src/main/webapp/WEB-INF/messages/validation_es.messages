@@ -25,6 +25,8 @@ javax.validation.constraints.Past.message = Debe estar en el pasado
 javax.validation.constraints.Pattern.message = Debe encajar en el patrón "{regexp}"
 javax.validation.constraints.Size.message = Debe tener entre {min} y {max} elementos
 
+acme.validation.message.confirmation = Debe confirmar el envío
+
 org.hibernate.validator.constraints.CreditCardNumber.message = Número de tarjeta incorrecto
 org.hibernate.validator.constraints.Length.message = La longitud debe estar entre {min} y {max}
 org.hibernate.validator.constraints.Range.message = Debe estar entre {min} y {max}
