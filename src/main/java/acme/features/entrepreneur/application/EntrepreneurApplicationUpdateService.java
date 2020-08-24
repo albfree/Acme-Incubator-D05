@@ -16,13 +16,9 @@ import acme.framework.services.AbstractUpdateService;
 @Service
 public class EntrepreneurApplicationUpdateService implements AbstractUpdateService<Entrepreneur, Application> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private EntrepreneurApplicationRepository repository;
 
-
-	// AbstractShowService<Employer, Application> interface -------------
 
 	@Override
 	public boolean authorise(final Request<Application> request) {
@@ -46,18 +42,21 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 	}
 
 	@Override
+	public void bind(final Request<Application> request, final Application entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		request.bind(entity, errors);
+	}
+
+	@Override
 	public void unbind(final Request<Application> request, final Application entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
 		request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");
-
-		//		if (entity.getStatus().equals("REJECTED")) {
-		//			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status", "rejectReason");
-		//		} else {
-		//			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");
-		//		}
 	}
 
 	@Override
@@ -74,44 +73,20 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 	}
 
 	@Override
-	public void bind(final Request<Application> request, final Application entity, final Errors errors) {
-		// TODO Auto-generated method stub
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
-
-		if (request.getModel().getString("status").equals("REJECTED")) {
-			request.bind(entity, errors, "status", "rejectReason");
-		}
-		if (request.getModel().getString("status").equals("ACCEPTED")) {
-			request.bind(entity, errors, "status");
-		}
-	}
-
-	@Override
 	public void validate(final Request<Application> request, final Application entity, final Errors errors) {
-		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
 
-		if (request.getModel().getString("status").equals("REJECTED") /* && !(request.getModel().getString("status").equals("ACCEPTED") || request.getModel().getString("status").equals("PENDING")) */ && !errors.hasErrors("rejectReason")) {
-			errors.state(request, !request.getModel().getString("rejectReason").isEmpty(), "rejectReason", "entrepreneur.application.error.notBlank");
+		if (!errors.hasErrors("status") && entity.getStatus().equals("REJECTED") && !errors.hasErrors("rejectReason")) {
+			errors.state(request, !entity.getRejectReason().isEmpty(), "rejectReason", "entrepreneur.application.error.justification");
 		}
 	}
 
 	@Override
 	public void update(final Request<Application> request, final Application entity) {
-		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
-
-		entity.setStatus(request.getModel().getString("status"));
-		if (request.getModel().getString("status").equals("REJECTED")) {
-			if (!request.getModel().getString("rejectReason").isEmpty()) {
-				entity.setRejectReason(request.getModel().getString("rejectReason"));
-			}
-		}
 
 		this.repository.save(entity);
 	}

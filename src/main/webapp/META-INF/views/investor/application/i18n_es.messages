@@ -17,6 +17,6 @@ investor.application.form.label.creation-date = Fecha de creación
 investor.application.form.label.statement = Declaración
 investor.application.form.label.investment-offer = Oferta de inversión
 investor.application.form.label.status = Estado
-investor.application.form.label.rejectReason = Razón de Rechazo
+investor.application.form.label.rejectReason = Justificación
 
 investor.application.form.button.return = Volver

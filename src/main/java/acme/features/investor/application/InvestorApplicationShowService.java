@@ -45,7 +45,7 @@ public class InvestorApplicationShowService implements AbstractShowService<Inves
 		assert entity != null;
 		assert model != null;
 
-		if (entity.getStatus().equals("REJECTED")) {
+		if (entity.getStatus().equals("REJECTED") || entity.getStatus().equals("ACCEPTED")) {
 			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status", "rejectReason");
 		} else {
 			request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");

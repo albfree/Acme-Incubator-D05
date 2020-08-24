@@ -17,14 +17,14 @@ entrepreneur.application.form.label.creation-date = Fecha de creación
 entrepreneur.application.form.label.statement = Declaración
 entrepreneur.application.form.label.investment-offer = Oferta de inversión
 entrepreneur.application.form.label.status = Estado
-entrepreneur.application.form.label.rejectReason = Razón de Rechazo
+entrepreneur.application.form.label.rejectReason = Justificación
 
 entrepreneur.application.form.label.status.pending = Pendiente
-entrepreneur.application.form.label.status.accepted = Aceptada
-entrepreneur.application.form.label.status.rejected = Rechazada
+entrepreneur.application.form.label.status.accept = Aceptar
+entrepreneur.application.form.label.status.reject = Rechazar
 
 entrepreneur.application.form.button.update = Actualizar
 
-entrepreneur.application.error.notBlank = Si se rechaza, la razón no puede ser nula
+entrepreneur.application.error.justification = Debe justificar el rechazo
 
 entrepreneur.application.form.button.return = Volver

@@ -50,7 +50,7 @@ public class Application extends DomainEntity {
 	@Pattern(regexp = "^(PENDING|ACCEPTED|REJECTED)$")
 	private String				status;
 
-	@Size(min = 0, max = 255)
+	@Size(max = 255)
 	private String				rejectReason;
 
 	@ManyToOne(optional = false)
