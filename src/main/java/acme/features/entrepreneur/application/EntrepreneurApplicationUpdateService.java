@@ -47,7 +47,7 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "creationDate");
+		request.bind(entity, errors, "ticker", "creationDate", "statement", "investmentOffer");
 	}
 
 	@Override
