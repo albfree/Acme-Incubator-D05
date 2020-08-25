@@ -16,7 +16,7 @@ master.banner.background = #FFE97F
 
 master.welcome.title = ¡Bienvenidos!
 master.welcome.text = \
-	Bienvenidos a Acme Incubator!
+	¡Bienvenidos a Acme Incubator!
 
 # master.menu #################################################################
 
