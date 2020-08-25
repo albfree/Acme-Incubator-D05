@@ -16,17 +16,28 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
+	<jstl:if test="${command == 'create'}">
+		<acme:form-textbox code="authenticated.message.form.label.title" path="title" />
+		<acme:form-textbox code="authenticated.message.form.label.tags" path="tags" />
+		<acme:form-textarea code="authenticated.message.form.label.body" path="body" />
+		<acme:form-checkbox code="authenticated.message.form.label.confirmation" path="confirmation" />
 
-	<acme:form-textbox code="authenticated.message.form.label.title" path="title"/>
-	<acme:form-moment code="authenticated.message.form.label.creation-moment" path="creationMoment"/>
-	<acme:form-textbox code="authenticated.message.form.label.tags" path="tags"/>
-	<acme:form-textarea code="authenticated.message.form.label.body" path="body"/>
-	<acme:form-textbox code="authenticated.message.form.label.user" path="user.identity.fullName"/>
-	<acme:form-checkbox code="authenticated.message.form.label.confirmation" path="confirmation"/>
+	</jstl:if>
 
-	<acme:form-submit test="${command == 'create'} }" 
-	code="authenticated.message.form.button.create" 
-	action="/authenticated/message/create"/>
-	<acme:form-return code="authenticated.message.form.button.return"/>
+	<jstl:if test="${command == 'show'}">
+		<acme:form-textbox code="authenticated.message.form.label.title" path="title" readonly="true" />
+		<acme:form-moment code="authenticated.message.form.label.creation-moment" path="creationMoment" readonly="true" />
+		<acme:form-textbox code="authenticated.message.form.label.tags" path="tags" readonly="true" />
+		<acme:form-textarea code="authenticated.message.form.label.body" path="body" readonly="true" />
+		<acme:form-textbox code="authenticated.message.form.label.user" path="user.identity.fullName" readonly="true" />
+	</jstl:if>
+
+	<acme:form-submit test="${command == 'create'}" code="authenticated.message.form.button.create"
+		action="/authenticated/message/create?forumId=${forumId}" />
+		
+	<input id="forumId" name="forumId" value="${forumId}" type="hidden" />
+
+	<acme:form-return code="authenticated.message.form.button.return" />
+
 
 </acme:form>

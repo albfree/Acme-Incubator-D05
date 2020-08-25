@@ -1,17 +1,21 @@
 
 package acme.features.authenticated.message;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.customizations.Customization;
 import acme.entities.forums.Forum;
 import acme.entities.messages.Message;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.Principal;
 import acme.framework.entities.UserAccount;
 import acme.framework.services.AbstractCreateService;
 
@@ -25,7 +29,34 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	@Override
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
-		return true;
+
+		boolean result = false;
+		boolean imCreator;
+		boolean imParticipant;
+		int forumId;
+		int accId;
+		Forum forum;
+		Principal principal;
+		UserAccount user;
+
+		principal = request.getPrincipal();
+		accId = principal.getAccountId();
+		user = this.repository.findOneUserAccountById(accId);
+		forumId = request.getModel().getInteger("forumId");
+		forum = this.repository.findOneForumById(forumId);
+
+		imParticipant = forum.getParticipants().contains(user);
+
+		if (forum.getInvestment() != null) {
+			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
+		} else {
+			imCreator = forum.getCreator() == user;
+		}
+
+		result = imCreator || imParticipant;
+
+		return result;
+
 	}
 
 	@Override
@@ -34,7 +65,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "creationMoment");
+		request.bind(entity, errors, "creationMoment", "user.identity.fullName");
 
 	}
 
@@ -45,7 +76,9 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert model != null;
 
 		model.setAttribute("confirmation", false);
-		request.unbind(entity, model, "title", "body");
+		request.unbind(entity, model, "title", "tags", "body");
+
+		model.setAttribute("forumId", request.getModel().getAttribute("forumId"));
 	}
 
 	@Override
@@ -63,8 +96,6 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		forum = this.repository.findOneForumById(forumId);
 		res = new Message();
 
-		request.getModel().setAttribute("confirmation", false);
-
 		res.setUser(user);
 		res.setForum(forum);
 		return res;
@@ -79,6 +110,54 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 
 		confirmation = request.getModel().getBoolean("confirmation");
 		errors.state(request, confirmation, "confirmation", "acme.validation.message.confirmation");
+
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !this.isSpamText(entity.getTitle()), "title", "authenticated.message.error.spam");
+		}
+
+		if (!errors.hasErrors("body")) {
+			errors.state(request, !this.isSpamText(entity.getBody()), "body", "authenticated.message.error.spam");
+		}
+
+	}
+
+	private boolean isSpamText(final String textToCheck) {
+		boolean result = false;
+		Double numSpWordsInText = 0.;
+		Integer numOfWords = textToCheck.split(" ").length;
+		List<Customization> customization = this.repository.findCustomizations();
+
+		String spamWords = customization.get(0).getSpamWords();
+
+		String[] spamWordsArray = spamWords.split(";");
+
+		List<String> spamWordsList = Arrays.asList(spamWordsArray);
+
+		for (String sw : spamWordsList) {
+
+			numSpWordsInText = numSpWordsInText + this.timesAppearSpamWord(textToCheck.toLowerCase(), sw.toLowerCase(), 0.);
+
+			Double percentage = numSpWordsInText / numOfWords * 100;
+
+			if (percentage > customization.get(0).getThreshold()) {
+				result = true;
+				break;
+			}
+
+		}
+
+		return result;
+	}
+
+	private double timesAppearSpamWord(final String textToCheck, final String spamWord, Double numSpWord) {
+
+		if (textToCheck.contains(spamWord)) {
+			Integer index = textToCheck.indexOf(spamWord) + spamWord.length();
+			numSpWord += 1;
+			return this.timesAppearSpamWord(textToCheck.substring(index).trim(), spamWord, numSpWord);
+		}
+
+		return numSpWord;
 	}
 
 	@Override

@@ -64,9 +64,9 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 
 		request.unbind(entity, model, "title");
 
-		int forumID = entity.getId();
+		int forumId = entity.getId();
 
-		model.setAttribute("forumID", forumID);
+		model.setAttribute("forumId", forumId);
 
 		int accId = request.getPrincipal().getAccountId();
 		UserAccount user = this.repository.findOneUserAccountById(accId);

@@ -36,10 +36,10 @@
 	<jstl:if test="${command != 'create'}">
 		<acme:form-submit test="${command == 'show'}" method="get" 
 			code="authenticated.forum.form.button.messages"
-			action="/authenticated/message/list?id=${forumID}" />
+			action="/authenticated/message/list?id=${forumId}" />
 		<acme:form-submit test="${command == 'show'}" method="get"
 			code="authenticated.forum.form.button.message.create"
-			action="/authenticated/message/create?forumId=${forumID}" />
+			action="/authenticated/message/create?forumId=${forumId}" />
 
 		<acme:form-submit test="${imCreator == 'true'}"
 			code="authenticated.forum.form.button.update"

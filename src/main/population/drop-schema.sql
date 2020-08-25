@@ -45,6 +45,10 @@
 
     alter table `forum` 
        drop 
+       foreign key `FKmjij2r3vmcex49205x7iqck3f`;
+
+    alter table `forum` 
+       drop 
        foreign key `FK4qtg14p3fwsfmdtq4a5wntrln`;
 
     alter table `forum_user_account` 

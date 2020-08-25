@@ -129,7 +129,8 @@
        `id` integer not null,
         `version` integer not null,
         `title` varchar(255),
-        `investment_id` integer not null,
+        `creator_id` integer,
+        `investment_id` integer,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -312,9 +313,6 @@
     alter table `application` 
        add constraint UK_ao7wxw7e7mkj6g5q49yq2fw8d unique (`ticker`);
 
-    alter table `forum` 
-       add constraint UK_f0d7jxbfriiptvmdq9vrdbmaa unique (`investment_id`);
-
     alter table `investment_round` 
        add constraint UK_408l1ohatdkkut5bkt0eu6ifs unique (`ticker`);
 
@@ -374,6 +372,11 @@
     alter table `entrepreneur` 
        add constraint FK_r6tqltqvrlh1cyy8rsj5pev1q 
        foreign key (`user_account_id`) 
+       references `user_account` (`id`);
+
+    alter table `forum` 
+       add constraint `FKmjij2r3vmcex49205x7iqck3f` 
+       foreign key (`creator_id`) 
        references `user_account` (`id`);
 
     alter table `forum` 

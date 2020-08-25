@@ -20,3 +20,5 @@ authenticated.message.form.label.confirmation = ¿Seguro que quieres publicar es
 
 authenticated.message.form.button.create = Publicar Mensaje
 authenticated.message.form.button.return = Volver
+
+authenticated.message.error.spam = El texto introducido es considerado spam
