@@ -24,8 +24,6 @@
 
 	<jstl:if test="${status != 'PENDING' and command == 'show'}">
 		<acme:form-textbox code="entrepreneur.application.form.label.status" path="status" readonly="true" />
-	</jstl:if>
-	<jstl:if test="${status != 'PENDING' and command == 'show'}">
 		<acme:form-textarea code="entrepreneur.application.form.label.rejectReason" path="rejectReason" readonly="true" />
 	</jstl:if>
 
