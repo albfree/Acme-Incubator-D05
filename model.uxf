@@ -874,4 +874,30 @@ m2=  0..*
 accepted by ^</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1752</x>
+      <y>280</y>
+      <w>360</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+BookkeeperRequester
+--
++ firmName: String {NotBlank, Size(min = 1, max = 255)}
++ responsibilityStatement: String {NotBlank, Size(min = 1, max = 255)}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>208</y>
+      <w>488</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;590.0;140.0</additional_attributes>
+  </element>
 </diagram>
