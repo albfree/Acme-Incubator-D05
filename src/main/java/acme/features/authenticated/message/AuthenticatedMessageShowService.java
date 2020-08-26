@@ -4,6 +4,7 @@ package acme.features.authenticated.message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.forums.Forum;
 import acme.entities.messages.Message;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -24,26 +25,31 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		assert request != null;
 
 		boolean result = false;
-		int id;
-		Message message;
 		Principal principal;
+		int currentUserId;
+		UserAccount currentUserAccount;
+		int messageId;
+		Message message;
+		Forum forum;
+		boolean isParticipant;
+		boolean isCreator;
 
-		id = request.getModel().getInteger("id");
-		message = this.repository.findOneMessageById(id);
 		principal = request.getPrincipal();
+		currentUserId = principal.getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
+		messageId = request.getModel().getInteger("id");
+		message = this.repository.findOneMessageById(messageId);
+		forum = message.getForum();
 
-		if (message.getForum().getInvestment().getEntrepreneur().getUserAccount().getId() == principal.getAccountId()) {
-			result = true;
+		isParticipant = forum.getParticipants().contains(currentUserAccount);
+
+		if (forum.getInvestment() != null) {
+			isCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
 		} else {
-			for (UserAccount ua : message.getForum().getParticipants()) {
-				if (ua.getId() == principal.getAccountId()) {
-					result = true;
-					break;
-				}
-			}
+			isCreator = forum.getCreator().equals(currentUserAccount);
 		}
 
-		return result;
+		return isParticipant || isCreator;
 	}
 
 	@Override

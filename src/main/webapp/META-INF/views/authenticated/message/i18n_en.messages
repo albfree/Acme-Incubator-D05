@@ -16,5 +16,9 @@ authenticated.message.form.label.creation-moment = Creation moment
 authenticated.message.form.label.tags = Tags
 authenticated.message.form.label.body = Body
 authenticated.message.form.label.user = User
+authenticated.message.form.label.confirmation = Confirmation
 
+authenticated.message.form.button.create = Post message
 authenticated.message.form.button.return = Return
+
+authenticated.message.error.spam = This text is considered spam
