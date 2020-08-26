@@ -781,8 +781,9 @@ created by ^</panel_attributes>
 Forum
 --
 + title: String {NotBlank, Size(min = 1, max = 255)}
-+ investment: InvestmentRound {Valid, OneToOne(optional = false)}
-+ participants: Collection&lt;UserAccount&gt; {LazyCollection(LazyCollectionOption.FALSE), ManyToMany}</panel_attributes>
++ investment: InvestmentRound {Valid, OneToOne(optional = true)}
++ participants: Collection&lt;UserAccount&gt; {LazyCollection(LazyCollectionOption.FALSE), ManyToMany}
++ creator: UserAccount {Valid, ManyToOne(optional = true)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

@@ -24,7 +24,6 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		boolean result = false;
 		Principal principal;
 		int currentUserId;
 		UserAccount currentUserAccount;
