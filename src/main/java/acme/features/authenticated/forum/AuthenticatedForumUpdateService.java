@@ -94,8 +94,9 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 			} else {
 				model.setAttribute(uaId.toString(), false);
 			}
-
 		}
+
+		model.setAttribute("imCreator", true);
 	}
 
 	@Override
