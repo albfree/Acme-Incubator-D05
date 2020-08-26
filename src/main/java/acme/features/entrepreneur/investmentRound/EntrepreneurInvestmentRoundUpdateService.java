@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.customizations.Customization;
+import acme.entities.forums.Forum;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Errors;
@@ -133,8 +134,22 @@ public class EntrepreneurInvestmentRoundUpdateService implements AbstractUpdateS
 		assert request != null;
 		assert entity != null;
 
-		this.repository.save(entity);
+		if (entity.sumActivitiesBudgets()) {
+			Forum forum = new Forum();
+			String title;
 
+			if (request.getLocale().getLanguage().equals("en")) {
+				title = "Investment Round Forum: " + entity.getTicker();
+			} else {
+				title = "Foro del Investment Round: " + entity.getTicker();
+			}
+
+			forum.setTitle(title);
+			forum.setInvestment(entity);
+			this.repository.save(forum);
+		}
+
+		this.repository.save(entity);
 	}
 
 }

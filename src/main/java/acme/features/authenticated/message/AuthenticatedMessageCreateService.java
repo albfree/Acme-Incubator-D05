@@ -114,6 +114,10 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 			errors.state(request, !this.isSpamText(entity.getTitle()), "title", "authenticated.message.error.spam");
 		}
 
+		if (!errors.hasErrors("tags")) {
+			errors.state(request, !this.isSpamText(entity.getTags()), "tags", "authenticated.message.error.spam");
+		}
+
 		if (!errors.hasErrors("body")) {
 			errors.state(request, !this.isSpamText(entity.getBody()), "body", "authenticated.message.error.spam");
 		}

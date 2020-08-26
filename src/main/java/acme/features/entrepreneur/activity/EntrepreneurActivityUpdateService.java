@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.activities.Activity;
 import acme.entities.customizations.Customization;
+import acme.entities.forums.Forum;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Errors;
@@ -140,6 +141,21 @@ public class EntrepreneurActivityUpdateService implements AbstractUpdateService<
 		assert entity != null;
 
 		this.repository.save(entity);
+
+		if (entity.getInvestment().sumActivitiesBudgets()) {
+			Forum forum = new Forum();
+			String title;
+
+			if (request.getLocale().getLanguage().equals("en")) {
+				title = "Investment Round Forum: " + entity.getInvestment().getTicker();
+			} else {
+				title = "Foro del Investment Round: " + entity.getInvestment().getTicker();
+			}
+
+			forum.setTitle(title);
+			forum.setInvestment(entity.getInvestment());
+			this.repository.save(forum);
+		}
 	}
 
 }
