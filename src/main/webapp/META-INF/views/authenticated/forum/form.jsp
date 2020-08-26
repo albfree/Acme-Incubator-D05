@@ -32,7 +32,7 @@
 			</strong>
 		</jstl:if>
 
-		<div style="overflow-y: scroll; width: 50%; height: 50%; max-height: 220px; border: #000000 1px solid;">
+		<div style="overflow-y: scroll; width: 40%; height: 50%; max-height: 220px; border: 2px outset; border-radius: 5px;">
 			<jstl:forEach items="${names}" var="name" varStatus="loop">
 				<acme:form-checkbox code="${name}" path="${ids[loop.index]}" />
 			</jstl:forEach>

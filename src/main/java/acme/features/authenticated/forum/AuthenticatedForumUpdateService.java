@@ -96,8 +96,6 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 			}
 
 		}
-
-		model.setAttribute("imCreator", true);
 	}
 
 	@Override
@@ -142,6 +140,8 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 				}
 			}
 		}
+
+		request.getModel().setAttribute("imCreator", true);
 
 		return result;
 	}
