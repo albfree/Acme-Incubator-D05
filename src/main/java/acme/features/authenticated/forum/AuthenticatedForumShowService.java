@@ -1,7 +1,6 @@
 
 package acme.features.authenticated.forum;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,32 +27,29 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 	public boolean authorise(final Request<Forum> request) {
 		assert request != null;
 
-		boolean result = false;
-		boolean imCreator;
-		boolean imParticipant;
-		int forumId;
-		int accId;
-		Forum forum;
 		Principal principal;
-		UserAccount user;
+		int currentUserId;
+		UserAccount currentUserAccount;
+		int forumId;
+		Forum forum;
+		boolean isParticipant;
+		boolean isCreator;
 
 		principal = request.getPrincipal();
-		accId = principal.getAccountId();
-		user = this.repository.findOneUserAccountById(accId);
+		currentUserId = principal.getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 		forumId = request.getModel().getInteger("id");
 		forum = this.repository.findOneForumById(forumId);
 
-		imParticipant = forum.getParticipants().contains(user);
+		isParticipant = forum.getParticipants().contains(currentUserAccount);
 
 		if (forum.getInvestment() != null) {
-			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
+			isCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
 		} else {
-			imCreator = forum.getCreator() == user;
+			isCreator = forum.getCreator().equals(currentUserAccount);
 		}
 
-		result = imCreator || imParticipant;
-
-		return result;
+		return isParticipant || isCreator;
 	}
 
 	@Override
@@ -68,36 +64,46 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 
 		model.setAttribute("forumId", forumId);
 
-		int accId = request.getPrincipal().getAccountId();
-		UserAccount user = this.repository.findOneUserAccountById(accId);
-		boolean imCreator = entity.getCreator().equals(user);
+		int currentUserId = request.getPrincipal().getAccountId();
+		UserAccount currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 
-		Collection<UserAccount> possibleParticipants;
-		Collection<UserAccount> participants;
+		boolean isCreator;
 
-		participants = entity.getParticipants();
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
-		possibleParticipants.remove(user);
-
-		List<String> userIds = possibleParticipants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
-		List<String> userNames = possibleParticipants.stream().map(x -> x.getUsername()).collect(Collectors.toList());
-
-		String[] ids = userIds.stream().toArray(i -> new String[i]);
-		String[] names = userNames.stream().toArray(i -> new String[i]);
-
-		model.setAttribute("names", names);
-		model.setAttribute("ids", ids);
-		for (UserAccount ua : possibleParticipants) {
-			Integer uaId = ua.getId();
-			if (participants.contains(ua)) {
-				model.setAttribute(uaId.toString(), true);
-			} else {
-				model.setAttribute(uaId.toString(), false);
-			}
-
+		if (entity.getInvestment() != null) {
+			isCreator = entity.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
+		} else {
+			isCreator = entity.getCreator().equals(currentUserAccount);
 		}
 
-		model.setAttribute("imCreator", imCreator);
+		model.setAttribute("imCreator", isCreator);
+
+		if (isCreator) {
+			Collection<UserAccount> possibleParticipants;
+			Collection<UserAccount> participants;
+
+			possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+			participants = entity.getParticipants();
+			possibleParticipants.remove(currentUserAccount);
+
+			List<String> userIds = possibleParticipants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
+			List<String> userNames = possibleParticipants.stream().map(x -> x.getUsername()).collect(Collectors.toList());
+
+			String[] ids = userIds.stream().toArray(i -> new String[i]);
+			String[] names = userNames.stream().toArray(i -> new String[i]);
+
+			model.setAttribute("names", names);
+			model.setAttribute("ids", ids);
+
+			for (UserAccount ua : possibleParticipants) {
+				Integer uaId = ua.getId();
+				if (participants.contains(ua)) {
+					model.setAttribute(uaId.toString(), true);
+				} else {
+					model.setAttribute(uaId.toString(), false);
+				}
+
+			}
+		}
 	}
 
 	@Override

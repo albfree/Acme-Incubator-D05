@@ -19,40 +19,39 @@
 <acme:form>
 
 	<acme:form-textbox code="authenticated.forum.form.label.title" path="title" />
-	
-	<jstl:if test="${imCreator == 'true'}">
-		<strong>
-			<spring:message code="authenticated.forum.form.label.participants"  />
-		</strong>
-		<div style="overflow-y: scroll; width: 50%; height: 50%; max-height: 100px; border: #000000 4px solid;">
+
+	<jstl:if test="${command == 'create' or imCreator}">
+
+		<jstl:if test="${command == 'create'}">
+			<strong> <acme:message code="authenticated.forum.form.label.participants" />
+			</strong>
+		</jstl:if>
+
+		<jstl:if test="${command != 'create'}">
+			<strong> <acme:message code="authenticated.forum.form.label.participants.update" />
+			</strong>
+		</jstl:if>
+
+		<div style="overflow-y: scroll; width: 50%; height: 50%; max-height: 220px; border: #000000 1px solid;">
 			<jstl:forEach items="${names}" var="name" varStatus="loop">
 				<acme:form-checkbox code="${name}" path="${ids[loop.index]}" />
-				<input type="hidden" value="on" name="_${ids[loop.index]}" />
 			</jstl:forEach>
 		</div>
+		<br />
 	</jstl:if>
-	
-	<br/>
-	<jstl:if test="${command != 'create'}">
-		<acme:form-submit test="${command == 'show'}" method="get" 
-			code="authenticated.forum.form.button.messages"
-			action="/authenticated/message/list?id=${forumId}" />
-		<acme:form-submit test="${command == 'show'}" method="get"
-			code="authenticated.forum.form.button.message.create"
-			action="/authenticated/message/create?forumId=${forumId}" />
 
-		<acme:form-submit test="${imCreator == 'true'}"
-			code="authenticated.forum.form.button.update"
-			action="/authenticated/forum/update" />
-		<acme:form-submit test="${imCreator == 'true'}" 
-			code="authenticated.forum.form.button.delete"
-			action="/authenticated/forum/delete" />
-		
-	</jstl:if>
-	<acme:form-submit test="${command == 'create'}" 
-		code="authenticated.forum.form.button.create"
-		action="/authenticated/forum/create" />
-		
+	<acme:form-submit test="${command == 'show'}" method="get" code="authenticated.forum.form.button.messages"
+		action="/authenticated/message/list?id=${forumId}" />
+	<acme:form-submit test="${command == 'show'}" method="get" code="authenticated.forum.form.button.message.create"
+		action="/authenticated/message/create?forumId=${forumId}" />
+
+	<acme:form-submit test="${imCreator and command == 'show' or command == 'update'}" code="authenticated.forum.form.button.update"
+		action="/authenticated/forum/update" />
+	<acme:form-submit test="${imCreator and command == 'show' or command == 'delete'}" code="authenticated.forum.form.button.delete"
+		action="/authenticated/forum/delete" />
+
+	<acme:form-submit test="${command == 'create'}" code="authenticated.forum.form.button.create" action="/authenticated/forum/create" />
+
 	<acme:form-return code="authenticated.forum.form.button.return" />
 
 </acme:form>

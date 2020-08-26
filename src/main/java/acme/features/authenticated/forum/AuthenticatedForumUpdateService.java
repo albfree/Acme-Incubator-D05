@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.forums.Forum;
 import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -27,19 +28,25 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 	@Override
 	public boolean authorise(final Request<Forum> request) {
 		assert request != null;
-		boolean imCreator;
-		UserAccount user;
+
+		boolean isCreator;
+		int currentUserId;
+		UserAccount currentUserAccount;
 		Forum forum;
-		int accId;
 		int forumId;
 
-		accId = request.getPrincipal().getAccountId();
-		user = this.repository.findOneUserAccountById(accId);
+		currentUserId = request.getPrincipal().getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 		forumId = request.getModel().getInteger("id");
 		forum = this.repository.findOneForumById(forumId);
-		imCreator = forum.getCreator().equals(user);
 
-		return imCreator;
+		if (forum.getInvestment() != null) {
+			isCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
+		} else {
+			isCreator = forum.getCreator().equals(currentUserAccount);
+		}
+
+		return isCreator;
 	}
 
 	@Override
@@ -48,7 +55,7 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		request.bind(entity, errors, "investment", "creator");
 	}
 
 	@Override
@@ -57,25 +64,29 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 		assert entity != null;
 		assert model != null;
 
+		request.unbind(entity, model, "title");
+
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
-		UserAccount me;
-		int accId;
+		UserAccount currentUserAccount;
+		int currentUserId;
 
-		accId = request.getPrincipal().getAccountId();
-		me = this.repository.findOneUserAccountById(accId);
+		currentUserId = request.getPrincipal().getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
 		participants = entity.getParticipants();
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
+
+		possibleParticipants.remove(currentUserAccount);
 
 		List<String> userIds = possibleParticipants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
 		List<String> userNames = possibleParticipants.stream().map(x -> x.getUsername()).collect(Collectors.toList());
-		possibleParticipants.remove(me);
 
 		String[] ids = userIds.stream().toArray(i -> new String[i]);
 		String[] names = userNames.stream().toArray(i -> new String[i]);
 
 		model.setAttribute("names", names);
 		model.setAttribute("ids", ids);
+
 		for (UserAccount ua : possibleParticipants) {
 			Integer uaId = ua.getId();
 			if (participants.contains(ua)) {
@@ -86,18 +97,53 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 
 		}
 
-		request.unbind(entity, model, "title");
+		model.setAttribute("imCreator", true);
 	}
 
 	@Override
 	public Forum findOne(final Request<Forum> request) {
 		assert request != null;
-		Forum res;
-		int id;
 
-		id = request.getModel().getInteger("id");
-		res = this.repository.findOneForumById(id);
-		return res;
+		Forum result;
+		int forumId;
+
+		forumId = request.getModel().getInteger("id");
+		result = this.repository.findOneForumById(forumId);
+
+		if (request.isMethod(HttpMethod.POST)) {
+			UserAccount creator;
+
+			if (result.getInvestment() != null) {
+				creator = result.getInvestment().getEntrepreneur().getUserAccount();
+			} else {
+				creator = result.getCreator();
+			}
+
+			Collection<UserAccount> participants;
+			participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+			participants.remove(creator);
+
+			List<String> userIds = participants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
+			List<String> userNames = participants.stream().map(x -> x.getUsername()).collect(Collectors.toList());
+
+			String[] ids = userIds.stream().toArray(i -> new String[i]);
+			String[] names = userNames.stream().toArray(i -> new String[i]);
+
+			request.getModel().setAttribute("ids", ids);
+			request.getModel().setAttribute("names", names);
+
+			for (UserAccount ua : participants) {
+				Integer uaId = ua.getId();
+
+				if (request.getModel().getAttribute(uaId.toString(), boolean.class)) {
+					request.getModel().setAttribute(uaId.toString(), true);
+				} else {
+					request.getModel().setAttribute(uaId.toString(), false);
+				}
+			}
+		}
+
+		return result;
 	}
 
 	@Override
@@ -112,21 +158,29 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 	public void update(final Request<Forum> request, final Forum entity) {
 		assert request != null;
 		assert entity != null;
+
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
 
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toCollection(ArrayList::new));
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
 		participants = new ArrayList<UserAccount>();
+
+		if (entity.getInvestment() != null) {
+			possibleParticipants.remove(entity.getInvestment().getEntrepreneur().getUserAccount());
+		} else {
+			possibleParticipants.remove(entity.getCreator());
+		}
 
 		for (UserAccount ua : possibleParticipants) {
 			Integer uaId = ua.getId();
-			boolean checked = request.getModel().getAttribute(uaId.toString(), boolean.class);
-			if (checked == true) {
+
+			if (request.getModel().getAttribute(uaId.toString(), boolean.class)) {
 				participants.add(ua);
 			}
 		}
 
 		entity.setParticipants(participants);
+
 		this.repository.save(entity);
 	}
 

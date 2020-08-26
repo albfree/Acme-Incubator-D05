@@ -40,7 +40,7 @@ public class Forum extends DomainEntity {
 	private Collection<@Valid UserAccount>	participants;
 
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = true)
 	private UserAccount						creator;
 
 }

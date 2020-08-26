@@ -894,7 +894,6 @@
 				<ref bean="investor03UserAccount"/>
 			</list>
 		</property>
-		<property name="creator" ref="entrepreneur01UserAccount" />
 	</bean>
 	
 	<bean name="forum02" class="acme.entities.forums.Forum">
@@ -905,7 +904,6 @@
 				<ref bean="investor02UserAccount"/>
 			</list>
 		</property>
-		<property name="creator" ref="entrepreneur02UserAccount" />
 	</bean>
 	
 	<bean name="forum03" class="acme.entities.forums.Forum">
@@ -915,7 +913,6 @@
 			<list>
 			</list>
 		</property>
-		<property name="creator" ref="entrepreneur02UserAccount" />
 	</bean>
 	
 	<!-- Messages -->
