@@ -25,33 +25,31 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		assert request != null;
 
 		boolean result = false;
-		boolean imCreator;
-		boolean imParticipant;
+		Principal principal;
+		int currentUserId;
+		UserAccount currentUserAccount;
 		int messageId;
-		int accId;
 		Message message;
 		Forum forum;
-		Principal principal;
-		UserAccount user;
+		boolean isParticipant;
+		boolean isCreator;
 
 		principal = request.getPrincipal();
-		accId = principal.getAccountId();
-		user = this.repository.findOneUserAccountById(accId);
+		currentUserId = principal.getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 		messageId = request.getModel().getInteger("id");
 		message = this.repository.findOneMessageById(messageId);
 		forum = message.getForum();
 
-		imParticipant = forum.getParticipants().contains(user);
+		isParticipant = forum.getParticipants().contains(currentUserAccount);
 
 		if (forum.getInvestment() != null) {
-			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
+			isCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
 		} else {
-			imCreator = forum.getCreator() == user;
+			isCreator = forum.getCreator().equals(currentUserAccount);
 		}
 
-		result = imCreator || imParticipant;
-
-		return result;
+		return isParticipant || isCreator;
 	}
 
 	@Override

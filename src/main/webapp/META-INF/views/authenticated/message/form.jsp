@@ -16,12 +16,12 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
+
 	<jstl:if test="${command == 'create'}">
 		<acme:form-textbox code="authenticated.message.form.label.title" path="title" />
-		<acme:form-textbox code="authenticated.message.form.label.tags" path="tags" />
+		<acme:form-textbox code="authenticated.message.form.label.tags" placeholder="#tag1, #tag2, #tag3" path="tags" />
 		<acme:form-textarea code="authenticated.message.form.label.body" path="body" />
 		<acme:form-checkbox code="authenticated.message.form.label.confirmation" path="confirmation" />
-
 	</jstl:if>
 
 	<jstl:if test="${command == 'show'}">
@@ -38,6 +38,5 @@
 	<input id="forumId" name="forumId" value="${forumId}" type="hidden" />
 
 	<acme:form-return code="authenticated.message.form.button.return" />
-
 
 </acme:form>

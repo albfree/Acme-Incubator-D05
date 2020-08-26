@@ -30,33 +30,29 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		boolean result = false;
-		boolean imCreator;
-		boolean imParticipant;
-		int forumId;
-		int accId;
-		Forum forum;
 		Principal principal;
-		UserAccount user;
+		int currentUserId;
+		UserAccount currentUserAccount;
+		int forumId;
+		Forum forum;
+		boolean isCreator;
+		boolean isParticipant;
 
 		principal = request.getPrincipal();
-		accId = principal.getAccountId();
-		user = this.repository.findOneUserAccountById(accId);
+		currentUserId = principal.getAccountId();
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 		forumId = request.getModel().getInteger("forumId");
 		forum = this.repository.findOneForumById(forumId);
 
-		imParticipant = forum.getParticipants().contains(user);
+		isParticipant = forum.getParticipants().contains(currentUserAccount);
 
 		if (forum.getInvestment() != null) {
-			imCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(user);
+			isCreator = forum.getInvestment().getEntrepreneur().getUserAccount().equals(currentUserAccount);
 		} else {
-			imCreator = forum.getCreator() == user;
+			isCreator = forum.getCreator().equals(currentUserAccount);
 		}
 
-		result = imCreator || imParticipant;
-
-		return result;
-
+		return isParticipant || isCreator;
 	}
 
 	@Override
@@ -65,7 +61,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "creationMoment", "user.identity.fullName");
+		request.bind(entity, errors, "creationMoment", "forum", "user");
 
 	}
 
@@ -75,30 +71,33 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert model != null;
 
-		model.setAttribute("confirmation", false);
 		request.unbind(entity, model, "title", "tags", "body");
 
+		model.setAttribute("confirmation", false);
 		model.setAttribute("forumId", request.getModel().getAttribute("forumId"));
 	}
 
 	@Override
 	public Message instantiate(final Request<Message> request) {
-		Message res;
-		UserAccount user;
-		Forum forum;
-		int id;
-		int forumId;
+		assert request != null;
 
-		id = request.getPrincipal().getAccountId();
+		Message result;
+		int currentUserId;
+		UserAccount currentUserAccount;
+		int forumId;
+		Forum forum;
+
+		currentUserId = request.getPrincipal().getAccountId();
 		forumId = request.getModel().getInteger("forumId");
 
-		user = this.repository.findOneUserAccountById(id);
+		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
 		forum = this.repository.findOneForumById(forumId);
-		res = new Message();
+		result = new Message();
 
-		res.setUser(user);
-		res.setForum(forum);
-		return res;
+		result.setUser(currentUserAccount);
+		result.setForum(forum);
+
+		return result;
 	}
 
 	@Override
@@ -106,9 +105,9 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		boolean confirmation;
 
-		confirmation = request.getModel().getBoolean("confirmation");
+		boolean confirmation = request.getModel().getBoolean("confirmation");
+
 		errors.state(request, confirmation, "confirmation", "acme.validation.message.confirmation");
 
 		if (!errors.hasErrors("title")) {
@@ -162,10 +161,14 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 
 	@Override
 	public void create(final Request<Message> request, final Message entity) {
+		assert request != null;
+		assert entity != null;
 
 		Date moment;
 		moment = new Date(System.currentTimeMillis() - 1);
+
 		entity.setCreationMoment(moment);
+
 		this.repository.save(entity);
 	}
 
