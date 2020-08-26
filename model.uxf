@@ -789,7 +789,7 @@ Forum
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2256</x>
+      <x>2336</x>
       <y>648</y>
       <w>344</w>
       <h>120</h>
@@ -810,13 +810,13 @@ Message
     <coordinates>
       <x>2160</x>
       <y>240</y>
-      <w>56</w>
+      <w>120</w>
       <h>952</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=0..*
 m2= 0..*
-has ^</panel_attributes>
+has / created by ^</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;1170.0</additional_attributes>
   </element>
   <element>
@@ -838,28 +838,28 @@ has &gt;</panel_attributes>
     <coordinates>
       <x>2248</x>
       <y>760</y>
-      <w>232</w>
+      <w>312</w>
       <h>432</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1= 1
 m2= 0..*
 has ^</panel_attributes>
-    <additional_attributes>10.0;520.0;250.0;10.0</additional_attributes>
+    <additional_attributes>10.0;520.0;350.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>2224</x>
       <y>240</y>
-      <w>256</w>
+      <w>328</w>
       <h>424</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1= 1
 m2= 0..*
 written by ^</panel_attributes>
-    <additional_attributes>10.0;10.0;280.0;510.0</additional_attributes>
+    <additional_attributes>10.0;10.0;380.0;510.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
