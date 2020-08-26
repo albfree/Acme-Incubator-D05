@@ -110,6 +110,7 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 		result = this.repository.findOneForumById(forumId);
 
 		if (request.isMethod(HttpMethod.POST)) {
+			request.getModel().setAttribute("imCreator", true);
 			UserAccount creator;
 
 			if (result.getInvestment() != null) {
@@ -141,8 +142,6 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 				}
 			}
 		}
-
-		request.getModel().setAttribute("imCreator", true);
 
 		return result;
 	}
