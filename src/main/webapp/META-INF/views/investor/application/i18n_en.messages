@@ -17,5 +17,11 @@ investor.application.form.label.creation-date = Creation date
 investor.application.form.label.statement = Statement
 investor.application.form.label.investment-offer = Investment offer
 investor.application.form.label.status = Status
+investor.application.form.label.rejectReason = Justification
 
+investor.application.form.button.apply = Apply
 investor.application.form.button.return = Return
+
+investor.application.error.ticker.sector = The first three characters must be the same (but in uppercase) to those of your investor sector: {0}. In case of being one or two characters, add one or two X
+investor.application.error.ticker.year = In the second string you must enter the last two digits of the current year
+investor.application.error.ticker.exists = Choose another ticker number, the one you have entered is already in use

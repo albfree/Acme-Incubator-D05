@@ -43,6 +43,7 @@
         `creation_date` datetime(6),
         `investment_offer_amount` double precision,
         `investment_offer_currency` varchar(255),
+        `reject_reason` varchar(255),
         `statement` varchar(255),
         `status` varchar(255),
         `ticker` varchar(255),
@@ -59,6 +60,15 @@
     ) engine=InnoDB;
 
     create table `bookkeeper` (
+       `id` integer not null,
+        `version` integer not null,
+        `user_account_id` integer,
+        `firm_name` varchar(255),
+        `responsibility_statement` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `bookkeeper_requester` (
        `id` integer not null,
         `version` integer not null,
         `user_account_id` integer,
@@ -129,7 +139,8 @@
        `id` integer not null,
         `version` integer not null,
         `title` varchar(255),
-        `investment_id` integer not null,
+        `creator_id` integer,
+        `investment_id` integer,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -312,9 +323,6 @@
     alter table `application` 
        add constraint UK_ao7wxw7e7mkj6g5q49yq2fw8d unique (`ticker`);
 
-    alter table `forum` 
-       add constraint UK_f0d7jxbfriiptvmdq9vrdbmaa unique (`investment_id`);
-
     alter table `investment_round` 
        add constraint UK_408l1ohatdkkut5bkt0eu6ifs unique (`ticker`);
 
@@ -366,6 +374,11 @@
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
 
+    alter table `bookkeeper_requester` 
+       add constraint FK_al0n479xs5mn1l0btqrf1dntu 
+       foreign key (`user_account_id`) 
+       references `user_account` (`id`);
+
     alter table `consumer` 
        add constraint FK_6cyha9f1wpj0dpbxrrjddrqed 
        foreign key (`user_account_id`) 
@@ -374,6 +387,11 @@
     alter table `entrepreneur` 
        add constraint FK_r6tqltqvrlh1cyy8rsj5pev1q 
        foreign key (`user_account_id`) 
+       references `user_account` (`id`);
+
+    alter table `forum` 
+       add constraint `FKmjij2r3vmcex49205x7iqck3f` 
+       foreign key (`creator_id`) 
        references `user_account` (`id`);
 
     alter table `forum` 

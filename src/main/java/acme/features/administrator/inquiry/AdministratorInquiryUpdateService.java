@@ -42,7 +42,7 @@ public class AdministratorInquiryUpdateService implements AbstractUpdateService<
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "deadline", "description", "minMoney", "maxMoney", "email");
+		request.unbind(entity, model, "title", "creation", "deadline", "description", "minMoney", "maxMoney", "email");
 	}
 
 	@Override

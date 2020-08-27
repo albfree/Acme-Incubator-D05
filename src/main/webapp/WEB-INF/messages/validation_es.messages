@@ -44,3 +44,5 @@ acme.validation.script = El script "{0}" debe devolver true
 
 acme.validation.customization.threshold.max = Debe ser menor o igual a 100,0
 acme.validation.customization.threshold.invalid = Valor incorrecto
+
+acme.validation.message.confirmation = Debe confirmar el envío

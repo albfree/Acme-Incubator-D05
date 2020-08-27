@@ -16,8 +16,7 @@ master.banner.background = #FFE97F
 
 master.welcome.title = Welcome!
 master.welcome.text = \
-	Welcome to Starter Project! Never before has it bee easier to get your \
-	project up and running!
+	Welcome to Acme Incubator!
 
 # master.menu #################################################################
 
@@ -78,6 +77,7 @@ master.menu.administrator.challenge.create = New Challenge
 master.menu.administrator.shutdown = Shut down
 master.menu.administrator.tool-record.create = Create Tool Record
 master.menu.administrator.technology-record.create = Create Technology Record
+master.menu.bookkeeper-requester.list = List Bookkeeper Requests
 
 # master.menu.authenticated ###################################################
 
@@ -88,6 +88,7 @@ master.menu.authenticated.challenge = Challenges
 master.menu.authenticated.overture.list = List of overtures
 master.menu.authenticated.inquiry.list = List of inquiries
 master.menu.authenticated.forum.list = Forums in which I participate
+master.menu.authenticated.forum.create = Create Forum
 
 # master.menu.investor ###################################################
 
@@ -108,6 +109,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.entrepreneur = Entrepreneur
 master.menu.entrepreneur.investment-round.list-mine = My investment rounds' list
+master.menu.entrepreneur.investment-round.create = Create an investment round
 master.menu.entrepreneur.application.list-mine = Applications to my investment rounds
 
 # master.menu.bookkeeper ###################################################
@@ -124,6 +126,12 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.become-entrepreneur = Become an entrepreneur
+master.menu.user-account.entrepreneur = Entrepreneur data
+master.menu.user-account.become-investor = Become an investor
+master.menu.user-account.investor = Investor data
+master.menu.user-account.bookkeeper-requester = Request to become a bookkeeper
+master.menu.user-account.bookkeeper-requester.general-data = Bookkeeper request
 
 # master.footer ###############################################################
 

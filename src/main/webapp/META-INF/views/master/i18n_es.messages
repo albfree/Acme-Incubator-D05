@@ -16,8 +16,7 @@ master.banner.background = #FFE97F
 
 master.welcome.title = ¡Bienvenidos!
 master.welcome.text = \
-	Bienvenidos a Acme Stater!  Nunca antes ha sido tan sencillo desarrollar un \
-	proyecto y hacerlo funcionar.
+	¡Bienvenidos a Acme Incubator!
 
 # master.menu #################################################################
 
@@ -78,6 +77,7 @@ master.menu.administrator.challenge.create = Nuevo Desafío
 master.menu.administrator.shutdown = Parar el sistema
 master.menu.administrator.tool-record.create = Crear Registro de Herramientas
 master.menu.administrator.technology-record.create = Crear Registro de Tecnología
+master.menu.bookkeeper-requester.list = Lista de solicitudes para contable
 
 # master.menu.authenticated ###################################################
 
@@ -88,6 +88,7 @@ master.menu.authenticated.challenge = Desafíos
 master.menu.authenticated.overture.list = Lista de propuestas
 master.menu.authenticated.inquiry.list = Lista de consultas
 master.menu.authenticated.forum.list = Foros en los que participo
+master.menu.authenticated.forum.create = Crear Foro
 
 # master.menu.investor ###################################################
 
@@ -108,6 +109,7 @@ master.menu.consumer.favourite-link = Enlace favorito
 
 master.menu.entrepreneur = Emprendedor
 master.menu.entrepreneur.investment-round.list-mine = Lista de mis rondas de inversión
+master.menu.entrepreneur.investment-round.create = Crear una ronda de inversión
 master.menu.entrepreneur.application.list-mine = Solicitudes a mis rondas de inversión
 
 # master.menu.bookkeeper ###################################################
@@ -124,6 +126,13 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+master.menu.user-account.become-entrepreneur = Hazte emprendedor
+master.menu.user-account.entrepreneur = Datos de emprendedor
+master.menu.user-account.become-investor = Hazte inversor
+master.menu.user-account.investor = Datos de inversor
+master.menu.user-account.bookkeeper-requester = Solicitar ser contable
+master.menu.user-account.bookkeeper-requester.general-data = Solicitud de contable
+
 
 ﻿# master.footer ###############################################################
 

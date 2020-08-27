@@ -48,6 +48,9 @@ public class EntrepreneurActivityShowService implements AbstractShowService<Entr
 		assert model != null;
 
 		request.unbind(entity, model, "title", "startDateTime", "endDateTime", "budget");
+
+		model.setAttribute("ivID", entity.getInvestment().getId());
+		model.setAttribute("finalMode", entity.getInvestment().sumActivitiesBudgets());
 	}
 
 	@Override

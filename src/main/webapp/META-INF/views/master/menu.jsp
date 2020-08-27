@@ -68,6 +68,8 @@
 		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.authenticated.forum.list" action="/authenticated/forum/list" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.authenticated.forum.create" action="/authenticated/forum/create" />
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.investment-round.list" action="/authenticated/investment-round/list" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.notice.list" action="/authenticated/notice/list" />
@@ -82,7 +84,7 @@
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.tool-record.list" action="/authenticated/tool-record/list" />
 		</acme:menu-option>
-		
+
 		<acme:menu-option code="master.menu.investor" access="hasRole('Investor')">
 			<acme:menu-suboption code="master.menu.investor.application.list-mine" action="/investor/application/list-mine" />
 		</acme:menu-option>
@@ -109,6 +111,8 @@
 			<acme:menu-suboption code="master.menu.technology-record.list" action="/administrator/technology-record/list" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.tool-record.list" action="/administrator/tool-record/list" />
+			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.bookkeeper-requester.list" action="/administrator/bookkeeper-requester/list" />
 		</acme:menu-option>
 
 
@@ -133,17 +137,21 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/" />
 		</acme:menu-option>
-		
+
 		<acme:menu-option code="master.menu.entrepreneur" access="hasRole('Entrepreneur')">
 			<acme:menu-suboption code="master.menu.entrepreneur.investment-round.list-mine" action="/entrepreneur/investment-round/list-mine" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.entrepreneur.investment-round.create" action="/entrepreneur/investment-round/create" />
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.entrepreneur.application.list-mine" action="/entrepreneur/application/list-mine" />
 		</acme:menu-option>
-		
+
 		<acme:menu-option code="master.menu.bookkeeper" access="hasRole('Bookkeeper')">
 			<acme:menu-suboption code="master.menu.bookkeeper.investment-round.list-mine" action="/bookkeeper/investment-round/list-mine" />
 			<acme:menu-separator />
-			<acme:menu-suboption code="master.menu.bookkeeper.investment-round.list-not-mine" action="/bookkeeper/investment-round/list-not-mine" />
+			<acme:menu-suboption code="master.menu.bookkeeper.investment-round.list-not-mine"
+				action="/bookkeeper/investment-round/list-not-mine" />
+
 		</acme:menu-option>
 	</acme:menu-left>
 
@@ -161,6 +169,18 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
+			<acme:menu-suboption code="master.menu.user-account.become-entrepreneur" action="/authenticated/entrepreneur/create"
+				access="!hasRole('Entrepreneur')" />
+			<acme:menu-suboption code="master.menu.user-account.entrepreneur" action="/authenticated/entrepreneur/update"
+				access="hasRole('Entrepreneur')" />
+			<acme:menu-suboption code="master.menu.user-account.become-investor" action="/authenticated/investor/create"
+				access="!hasRole('Investor')" />
+			<acme:menu-suboption code="master.menu.user-account.investor" action="/authenticated/investor/update"
+				access="hasRole('Investor')" />
+			<acme:menu-suboption code="master.menu.user-account.bookkeeper-requester" action="/authenticated/bookkeeper-requester/create"
+				access="!hasRole('BookkeeperRequester') && !hasRole('Bookkeeper')" />
+			<acme:menu-suboption code="master.menu.user-account.bookkeeper-requester.general-data" action="/authenticated/bookkeeper-requester/show"
+				access="hasRole('BookkeeperRequester')" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()" />

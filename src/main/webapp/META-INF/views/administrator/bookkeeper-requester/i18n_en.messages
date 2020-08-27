@@ -1,0 +1,10 @@
+
+administrator.bookkeeper-requester.list.label.firm-name = Firm Name
+administrator.bookkeeper-requester.form.label.responsibility-statement = Responsibility Statement
+
+administrator.bookkeeper-requester.form.label.firm-name = Firm Name
+administrator.bookkeeper-requester.form.label.responsibility-statement = Responsibility Statement
+
+administrator.bookkeeper-requester.form.button.delete = Reject
+administrator.bookkeeper-requester.form.button.create = Accept
+administrator.bookkeeper-requester.form.button.return = Return
