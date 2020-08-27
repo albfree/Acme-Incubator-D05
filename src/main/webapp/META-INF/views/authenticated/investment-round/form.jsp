@@ -30,7 +30,7 @@
 		</strong>
 	</jstl:if>
 	
-	<jstl:if test="${isCreatorInv}">
+	<jstl:if test="${isCreatorInv and isInvestor}">
 		<strong> <acme:message code="authenticated.investment-round.form.is-creator" />
 		</strong>
 	</jstl:if>
