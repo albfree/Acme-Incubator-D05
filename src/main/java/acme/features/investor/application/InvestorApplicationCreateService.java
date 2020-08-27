@@ -33,12 +33,14 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		Principal principal;
 		int investmentId;
 		Application application;
+		InvestmentRound investment;
 
 		principal = request.getPrincipal();
 		investmentId = request.getModel().getInteger("invId");
 		application = this.repository.findOneApplicationByInvestorAndInvestmentId(principal.getActiveRoleId(), investmentId);
+		investment = this.repository.findOneInvestmentRoundById(investmentId);
 
-		result = application == null;
+		result = application == null && investment.getEntrepreneur().getUserAccount().getId() != principal.getAccountId();
 
 		return result;
 	}
@@ -108,8 +110,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 				investorSector = entity.getInvestor().getActivitySector().toUpperCase();
 			}
 
-			if (investorSector.length() == 3 && !investorSector.equals(ticker[0]) || investorSector.length() == 2 && !ticker[0].equals(investorSector + "X")
-				|| investorSector.length() == 1 && !ticker[0].equals(investorSector + "XX")) {
+			if (investorSector.length() == 3 && !investorSector.equals(ticker[0]) || investorSector.length() == 2 && !ticker[0].equals(investorSector + "X") || investorSector.length() == 1 && !ticker[0].equals(investorSector + "XX")) {
 				tickerIsCorrect = false;
 				errors.state(request, false, "ticker", "investor.application.error.ticker.sector", entity.getInvestor().getActivitySector());
 			}

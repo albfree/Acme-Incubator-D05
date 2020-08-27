@@ -60,6 +60,10 @@ public class AuthenticatedInvestmentRoundShowService implements AbstractShowServ
 			model.setAttribute("applied", application != null);
 		}
 
+		if (entity.getEntrepreneur().getUserAccount().getId() == principal.getAccountId()) {
+			model.setAttribute("isCreatorInv", true);
+		}
+
 	}
 
 	@Override
