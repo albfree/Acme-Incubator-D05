@@ -88,18 +88,20 @@ public class EntrepreneurActivityDeleteService implements AbstractDeleteService<
 
 		this.repository.delete(entity);
 
-		if (entity.getInvestment().sumActivitiesBudgets()) {
+		InvestmentRound investment = this.repository.findOneInvestmentRoundById(entity.getInvestment().getId());
+
+		if (investment.sumActivitiesBudgets()) {
 			Forum forum = new Forum();
 			String title;
 
 			if (request.getLocale().getLanguage().equals("en")) {
-				title = "Investment Round Forum: " + entity.getInvestment().getTicker();
+				title = "Investment Round Forum: " + investment.getTicker();
 			} else {
-				title = "Foro del Investment Round: " + entity.getInvestment().getTicker();
+				title = "Foro del Investment Round: " + investment.getTicker();
 			}
 
 			forum.setTitle(title);
-			forum.setInvestment(entity.getInvestment());
+			forum.setInvestment(investment);
 			this.repository.save(forum);
 		}
 	}
