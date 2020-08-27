@@ -35,7 +35,7 @@
 		</strong>
 	</jstl:if>
 	
-	<acme:form-submit test="${isInvestor and not applied}" method="get" code="authenticated.investment-round.form.button.apply"
+	<acme:form-submit test="${isInvestor and not applied and not isCreatorInv}" method="get" code="authenticated.investment-round.form.button.apply"
 		action="/investor/application/create?invId=${ivID}" />
 	<acme:form-submit method="get" code="authenticated.investment-round.form.button.work-programme"
 		action="/authenticated/activity/list?id=${ivID}" />
