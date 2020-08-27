@@ -40,7 +40,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		application = this.repository.findOneApplicationByInvestorAndInvestmentId(principal.getActiveRoleId(), investmentId);
 		investment = this.repository.findOneInvestmentRoundById(investmentId);
 
-		result = application == null && investment.getEntrepreneur().getUserAccount().getId() != principal.getAccountId();
+		result = application == null && investment.getEntrepreneur().getUserAccount().getId() != principal.getAccountId() && investment.sumActivitiesBudgets();
 
 		return result;
 	}
