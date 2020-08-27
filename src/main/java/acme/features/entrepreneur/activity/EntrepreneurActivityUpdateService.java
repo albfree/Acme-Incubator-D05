@@ -2,6 +2,7 @@
 package acme.features.entrepreneur.activity;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -140,24 +141,30 @@ public class EntrepreneurActivityUpdateService implements AbstractUpdateService<
 		assert request != null;
 		assert entity != null;
 
-		this.repository.save(entity);
+		Collection<Activity> activities = entity.getInvestment().getWorkProgramme();
 
-		InvestmentRound investment = this.repository.findOneInvestmentRoundById(entity.getInvestment().getId());
+		Double sum = 0.;
 
-		if (investment.sumActivitiesBudgets()) {
+		for (Activity a : activities) {
+			sum += a.getBudget().getAmount();
+		}
+
+		if (sum.equals(entity.getInvestment().getAmount().getAmount())) {
 			Forum forum = new Forum();
 			String title;
 
 			if (request.getLocale().getLanguage().equals("en")) {
-				title = "Investment Round Forum: " + investment.getTicker();
+				title = "Investment Round Forum: " + entity.getInvestment().getTicker();
 			} else {
-				title = "Foro del Investment Round: " + investment.getTicker();
+				title = "Foro del Investment Round: " + entity.getInvestment().getTicker();
 			}
 
 			forum.setTitle(title);
-			forum.setInvestment(investment);
+			forum.setInvestment(entity.getInvestment());
 			this.repository.save(forum);
 		}
+
+		this.repository.save(entity);
 	}
 
 }

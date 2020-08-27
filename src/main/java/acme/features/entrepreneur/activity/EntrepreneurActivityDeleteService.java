@@ -1,6 +1,8 @@
 
 package acme.features.entrepreneur.activity;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,24 +88,33 @@ public class EntrepreneurActivityDeleteService implements AbstractDeleteService<
 		assert request != null;
 		assert entity != null;
 
-		this.repository.delete(entity);
+		Collection<Activity> activities = entity.getInvestment().getWorkProgramme();
 
-		InvestmentRound investment = this.repository.findOneInvestmentRoundById(entity.getInvestment().getId());
+		activities.remove(entity);
 
-		if (investment.sumActivitiesBudgets()) {
-			Forum forum = new Forum();
-			String title;
-
-			if (request.getLocale().getLanguage().equals("en")) {
-				title = "Investment Round Forum: " + investment.getTicker();
-			} else {
-				title = "Foro del Investment Round: " + investment.getTicker();
+		if (!activities.isEmpty()) {
+			Double sum = 0.;
+			for (Activity a : activities) {
+				sum += a.getBudget().getAmount();
 			}
 
-			forum.setTitle(title);
-			forum.setInvestment(investment);
-			this.repository.save(forum);
+			if (sum.equals(entity.getInvestment().getAmount().getAmount())) {
+				Forum forum = new Forum();
+				String title;
+
+				if (request.getLocale().getLanguage().equals("en")) {
+					title = "Investment Round Forum: " + entity.getInvestment().getTicker();
+				} else {
+					title = "Foro del Investment Round: " + entity.getInvestment().getTicker();
+				}
+
+				forum.setTitle(title);
+				forum.setInvestment(entity.getInvestment());
+				this.repository.save(forum);
+			}
 		}
+
+		this.repository.delete(entity);
 	}
 
 }
