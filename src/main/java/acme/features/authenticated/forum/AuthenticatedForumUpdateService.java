@@ -73,7 +73,7 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 
 		currentUserId = request.getPrincipal().getAccountId();
 		currentUserAccount = this.repository.findOneUserAccountById(currentUserId);
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 		participants = entity.getParticipants();
 
 		possibleParticipants.remove(currentUserAccount);
@@ -120,7 +120,7 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 			}
 
 			Collection<UserAccount> participants;
-			participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+			participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 			participants.remove(creator);
 
 			List<String> userIds = participants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
@@ -162,7 +162,7 @@ public class AuthenticatedForumUpdateService implements AbstractUpdateService<Au
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
 
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 		participants = new ArrayList<UserAccount>();
 
 		if (entity.getInvestment() != null) {

@@ -81,7 +81,7 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 			Collection<UserAccount> possibleParticipants;
 			Collection<UserAccount> participants;
 
-			possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+			possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 			participants = entity.getParticipants();
 			possibleParticipants.remove(currentUserAccount);
 

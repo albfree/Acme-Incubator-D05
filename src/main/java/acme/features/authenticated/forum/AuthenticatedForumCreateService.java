@@ -53,7 +53,7 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 
 		userAccountId = request.getPrincipal().getAccountId();
 		creator = this.repository.findOneUserAccountById(userAccountId);
-		participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+		participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 		participants.remove(creator);
 
 		List<String> userIds = participants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
@@ -90,7 +90,7 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 		if (request.isMethod(HttpMethod.POST)) {
 
 			Collection<UserAccount> participants;
-			participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+			participants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 			participants.remove(creator);
 
 			List<String> userIds = participants.stream().map(x -> String.valueOf(x.getId())).collect(Collectors.toList());
@@ -132,7 +132,7 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 		Collection<UserAccount> possibleParticipants;
 		Collection<UserAccount> participants;
 
-		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class)).collect(Collectors.toList());
+		possibleParticipants = this.repository.findManyUserAccount().stream().filter(x -> x.hasRole(Authenticated.class) && !x.getUsername().equals("administrator")).collect(Collectors.toList());
 		possibleParticipants.remove(entity.getCreator());
 		participants = new ArrayList<UserAccount>();
 
