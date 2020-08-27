@@ -23,6 +23,7 @@
 		<acme:form-money code="investor.application.form.label.investment-offer" path="investmentOffer" />
 	</jstl:if>
 	<jstl:if test="${command == 'show'}">
+		<acme:form-textbox code="investor.application.form.label.investment-ticker" path="investment.ticker" placeholder="SSS-YY-123456" readonly="true" />
 		<acme:form-textbox code="investor.application.form.label.ticker" path="ticker" placeholder="SSS-YY-123456" readonly="true" />
 		<acme:form-moment code="investor.application.form.label.creation-date" path="creationDate" readonly="true" />
 		<acme:form-textarea code="investor.application.form.label.statement" path="statement" readonly="true" />

@@ -48,7 +48,7 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "ticker", "creationDate", "statement", "investmentOffer");
+		request.bind(entity, errors, "ticker", "creationDate", "statement", "investmentOffer", "investment", "investor");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class EntrepreneurApplicationUpdateService implements AbstractUpdateServi
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status");
+		request.unbind(entity, model, "ticker", "creationDate", "statement", "investmentOffer", "status", "investment.ticker");
 	}
 
 	@Override

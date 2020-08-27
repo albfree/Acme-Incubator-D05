@@ -12,6 +12,7 @@ investor.application.list.label.ticker = Ticker
 investor.application.list.label.creation-date = Fecha de creación
 investor.application.list.label.statement = Declaración
 
+investor.application.form.label.investment-ticker = Ticker de la ronda de inversión
 investor.application.form.label.ticker = Ticker
 investor.application.form.label.creation-date = Fecha de creación
 investor.application.form.label.statement = Declaración

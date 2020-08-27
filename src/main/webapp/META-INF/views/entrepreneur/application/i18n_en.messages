@@ -12,6 +12,7 @@ entrepreneur.application.list.label.ticker = Ticker
 entrepreneur.application.list.label.creation-date = Creation date
 entrepreneur.application.list.label.statement = Statement
 
+entrepreneur.application.form.label.investment-ticker = Investment round's ticker
 entrepreneur.application.form.label.ticker = Ticker
 entrepreneur.application.form.label.creation-date = Creation date
 entrepreneur.application.form.label.statement = Statement
